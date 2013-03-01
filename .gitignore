@@ -1,0 +1,6 @@
+.idea/*
+*.DS_Store*
+*.log
+*.pot
+*.pyc
+local_settings.py
