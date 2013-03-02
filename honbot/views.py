@@ -7,3 +7,7 @@ def playerShow(request, player_id):
     t = loader.get_template('honbot/playerShow.html')
     c = Context({'player_id': player_id})
     return HttpResponse(t.render(c))
+
+
+def home(request):
+    return HttpResponse('hello')

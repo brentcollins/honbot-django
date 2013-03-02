@@ -6,5 +6,6 @@ from django.conf.urls import patterns, include, url
 
 urlpatterns=patterns('',
                      url(r'^player/(?P<player_id>\w+)/$', 'honbot.views.playerShow'),
+                     url('', 'honbot.views.home'),
                      )
 
