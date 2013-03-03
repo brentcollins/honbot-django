@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<head>
+    <title>HoN BoT</title>
+    <meta name="description" content="HoN BoT">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <link href="/static/css/bootstrap.min.css" media="all" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/bootstrap-responsive.min.css" media="all" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/overrides.css" media="all" rel="stylesheet" type="text/css"/>
+</head>
+
+<body>
+<header class="navbar navbar-inverse navbar-static-top"> <!-- alternative navbar navbar-inverse navbar-static-top -->
+    <nav class="navbar-inner">
+        <div class="container-fluid">
+            <a href="/" class="brand">HoN Bot</a>
+            <ul class="nav">
+                <li>
+                    <form accept-charset="UTF-8" action="/players/" class="navbar-form" id="player_search"
+                          method="post">
+                        <div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden"
+                                                                              value="&#x2713;"/><input
+                                name="authenticity_token" type="hidden"
+                                value="N/xF9W8o9M4hHydcGGt6XF+iXMNi9Fn6gT+/8guhR9Q="/></div>
+                        <input class="search-query" id="player" name="player" placeholder="Player Search" type="text"
+                               value=""/>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+{% block main_content %}{% endblock main_content %}
+
+<div class="container-fluid">
+    <footer class='footer'>
+        <small class="muted">
+            created by <a href="https://github.com/scttcper">scttcper</a>
+        </small>
+    </footer>
+</div>
+</body>
+<script>
+    $("#player_search").submit(function () {
+        var player = $('#player').val();
+        window.location.href = '/players/' + player + '/'
+        return false
+    });
+</script>
+</html>
