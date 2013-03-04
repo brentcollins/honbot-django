@@ -2,17 +2,19 @@
 <head>
     <title>HoN BoT</title>
     <meta name="description" content="HoN BoT">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="/static/js/jquery-1.9.1.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
     <link href="/static/css/bootstrap.min.css" media="all" rel="stylesheet" type="text/css"/>
     <link href="/static/css/bootstrap-responsive.min.css" media="all" rel="stylesheet" type="text/css"/>
     <link href="/static/css/overrides.css" media="all" rel="stylesheet" type="text/css"/>
+    <link rel="shortcut icon" href="/static/favicon.ico" />
 </head>
 
 <body>
 <header class="navbar navbar-inverse navbar-static-top"> <!-- alternative navbar navbar-inverse navbar-static-top -->
     <nav class="navbar-inner">
         <div class="container-fluid">
-            <a href="/" class="brand">HoN Bot</a>
+            <a href="/" class="brand">HoN BoT</a>
             <ul class="nav">
                 <li>
                     <form accept-charset="UTF-8" action="/players/" class="navbar-form" id="player_search"
@@ -29,10 +31,9 @@
         </div>
     </nav>
 </header>
-
+<div id="main" role="main">
 {% block main_content %}{% endblock main_content %}
 
-<div class="container-fluid">
     <footer class='footer'>
         <small class="muted">
             created by <a href="https://github.com/scttcper">scttcper</a>
@@ -43,7 +44,7 @@
 <script>
     $("#player_search").submit(function () {
         var player = $('#player').val();
-        window.location.href = '/players/' + player + '/'
+        window.location.href = '/player/' + player + '/'
         return false
     });
 </script>

@@ -163,14 +163,15 @@ hr.soften {
     text-align: center;
     margin-top: -20px;
     text-shadow: 0 1px 3px rgba(0, 0, 0, .4), 0 0 30px rgba(0, 0, 0, .075);
-    background: rgb(40, 52, 59); /* Old browsers */
-    background: -moz-linear-gradient(45deg, rgba(40, 52, 59, 1) 0%, rgba(130, 140, 149, 1) 64%, rgba(181, 189, 200, 1) 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left bottom, right top, color-stop(0%, rgba(40, 52, 59, 1)), color-stop(64%, rgba(130, 140, 149, 1)), color-stop(100%, rgba(181, 189, 200, 1))); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(45deg, rgba(40, 52, 59, 1) 0%, rgba(130, 140, 149, 1) 64%, rgba(181, 189, 200, 1) 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(45deg, rgba(40, 52, 59, 1) 0%, rgba(130, 140, 149, 1) 64%, rgba(181, 189, 200, 1) 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(45deg, rgba(40, 52, 59, 1) 0%, rgba(130, 140, 149, 1) 64%, rgba(181, 189, 200, 1) 100%); /* IE10+ */
-    background: linear-gradient(45deg, rgba(40, 52, 59, 1) 0%, rgba(130, 140, 149, 1) 64%, rgba(181, 189, 200, 1) 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#28343b', endColorstr='#b5bdc8', GradientType=1); /* IE6-9 fallback on horizontal gradient */
+    background: rgb(29,40,43); /* Old browsers */
+    background: -moz-linear-gradient(45deg,  rgba(29,40,43,1) 0%, rgba(118,124,130,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,rgba(29,40,43,1)), color-stop(100%,rgba(118,124,130,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(45deg,  rgba(29,40,43,1) 0%,rgba(118,124,130,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(45deg,  rgba(29,40,43,1) 0%,rgba(118,124,130,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(45deg,  rgba(29,40,43,1) 0%,rgba(118,124,130,1) 100%); /* IE10+ */
+    background: linear-gradient(45deg,  rgba(29,40,43,1) 0%,rgba(118,124,130,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1d282b', endColorstr='#767c82',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
 }
 
 .jumbotron h1 {

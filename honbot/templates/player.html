@@ -1,9 +1,26 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block main_content %}
+<header class="jumbotron subhead" id="overview">
+    <div class='container-fluid'>
+        <h1>{{ player_id }}</h1>
+        <p class="lead">
+            <span class="text-info">MMR: {{ stats.mmr }}</span> <span class="muted">|</span>
+            <span class="text-success">W: {{ stats.wins }}</span> <span class="muted">|</span>
+            <span class="text-error">L: {{ stats.losses }}</span> <span class="muted">|</span>
+            <span class="text-warning">{{ stats.winpercent }}</span>
+        </p>
+    </div>
+</header>
+<br>
 
-</body>
-</html>
+<div class='container-fluid'>
+    <div class="row-fluid">
+        <div class="span4 well sidebar-nav sidebar-nav-fixed marketing stats-title">
+            <h1 style="display:inline"></h1>
+        </div>
+    </div>
+</div>
+    {{ stats }}
+    <hr>
+    {{ test }}
+{% endblock main_content %}
