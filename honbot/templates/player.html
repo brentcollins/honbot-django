@@ -15,12 +15,108 @@
 
 <div class='container-fluid'>
     <div class="row-fluid">
-        <div class="span4 well sidebar-nav sidebar-nav-fixed marketing stats-title">
-            <h1 style="display:inline"></h1>
+        <div class="span3 well well-small marketing stats-title">
+            <h4>Lifetime</h4>
+            <table class="table table-condensed table-striped">
+                <tr>
+                    <td>Hours</td>
+                    <td>{{ stats.hours }}</td>
+                </tr>
+                <tr>
+                    <td>Kills</td>
+                    <td>{{ stats.kills }}</td>
+                </tr>
+                <tr>
+                    <td>Deaths</td>
+                    <td>{{ stats.deaths }}</td>
+                </tr>
+                <tr>
+                    <td>Assists</td>
+                    <td>{{ stats.assists }}</td>
+                </tr>
+                <tr>
+                    <td>Matches</td>
+                    <td>{{ stats.matches }}</td>
+                </tr>
+                <tr>
+                    <td>KDR</td>
+                    <td>{{ stats.kdr }}</td>
+                </tr>
+                <tr>
+                    <td>K+ADR</td>
+                    <td>{{ stats.kadr }}</td>
+                </tr>
+                <tr>
+                    <td>CC Games</td>
+                    <td>{{ stats.cc }}</td>
+                </tr>
+                <tr>
+                    <td>CC Calls</td>
+                    <td>{{ stats.cccalls }}</td>
+                </tr>
+                <tr>
+                    <td>DC</td>
+                    <td>{{ stats.left }}</td>
+                </tr>
+                <tr>
+                    <td>Kicked</td>
+                    <td>{{ stats.kicked }}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="span3 well well-small marketing stats-title">
+            <h4>Average</h4>
+            <table class="table table-condensed table-striped">
+                <tr>
+                    <td>Minutes</td>
+                    <td>{{ stats.atime }}</td>
+                </tr>
+                <tr>
+                    <td>Kills</td>
+                    <td>{{ stats.akills }}</td>
+                </tr>
+                <tr>
+                    <td>Deaths</td>
+                    <td>{{ stats.adeaths }}</td>
+                </tr>
+                <tr>
+                    <td>Assists</td>
+                    <td>{{ stats.aassists }}</td>
+                </tr>
+                <tr>
+                    <td>Creeps</td>
+                    <td>{{ stats.acs }}</td>
+                </tr>
+                <tr>
+                    <td>Denies</td>
+                    <td>{{ stats.adenies }}</td>
+                </tr>
+                <tr>
+                    <td>XP/min</td>
+                    <td>{{ stats.axpmin }}</td>
+                </tr>
+                <tr>
+                    <td>Gold/min</td>
+                    <td>{{ stats.agoldmin }}</td>
+                </tr>
+                <tr>
+                    <td>Actions/min</td>
+                    <td>{{ stats.aactionsmin }}</td>
+                </tr>
+                <tr>
+                    <td>Wards</td>
+                    <td>{{ stats.awards }}</td>
+                </tr>
+                <tr>
+                    <td>Consumeables</td>
+                    <td>{{ stats.aconsumables }}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="span6 well well-small marketing stats-title">
+            <h4>MMR History</h4>
+
         </div>
     </div>
 </div>
-    {{ stats }}
-    <hr>
-    {{ test }}
 {% endblock main_content %}
