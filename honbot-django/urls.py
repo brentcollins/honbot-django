@@ -7,15 +7,8 @@ admin.autodiscover()
 import honbot.urls
 
 urlpatterns = patterns('',
-    # urls specific to this app
-    url('^$', include(honbot.urls)),
-    url(r'^player/(?P<name>\w+)/$', 'honbot.views.players'),
-    (r'^favicon.ico$', 'django.views.static.serve', {'document_root': '/path/to/favicon'}),
-
+    url('', include(honbot.urls)),
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
-    url(r'^admin/', include(admin.site.urls)),
-
-
+    #url(r'^admin/', include(admin.site.urls)),
 )

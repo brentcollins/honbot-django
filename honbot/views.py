@@ -6,9 +6,19 @@ from django.http import HttpResponse
 import urllib2
 import simplejson
 import time
+import match
+
 
 def home(request):
     return render_to_response('home.html')
+
+
+def matches(request, match_id):
+    number = int(match_id)
+    stats = match.match(match_id)
+    t = loader.get_template('match.html')
+    c = Context({'number': number, 'stats': stats})
+    return HttpResponse(t.render(c))
 
 
 def players(request, name):
@@ -41,11 +51,7 @@ def get_json(endpoint):
     """
      returns json data for requested digg endpoint
     """
-    url = ''.join([
-        'http://api.heroesofnewerth.com',
-        endpoint,
-        '/?token=%s' % settings.TOKEN,
-        ])
+    url = ''.join(['http://api.heroesofnewerth.com', endpoint, '/?token=%s' % settings.TOKEN])
     web_raw_results = ''
     while True:
         try:
