@@ -3,7 +3,7 @@ import os
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
-TOKEN = 'RDMT34VE7R8Z2KLU'
+TOKEN = 'JXZXEVNEBQAY99KN'
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
