@@ -115,9 +115,15 @@
         </div>
         <div class="span6 well well-small marketing stats-title">
             <h4>Recent Matches</h4>
-
+            <table class="table table-condensed table-striped">
+                {% for m in data %}
+                    <tr>
+                        <td><a href='../../match/{{ data.0.0 }}'>{{ m.0 }}</a></td>
+                        <td>{{ m.1 }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
         </div>
     </div>
 </div>
-{{ data }}
 {% endblock main_content %}
