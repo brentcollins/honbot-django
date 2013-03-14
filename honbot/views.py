@@ -40,7 +40,8 @@ def players(request, name):
             newplayer.save()
         ### Get Match history ### api.heroesofnewerth.com/match_history/ranked/accountid/123456/?token=yourtoken
         url = '/match_history/ranked/nickname/' + name
-        history = get_json(url)
+        data = get_json(url)
+        history = match.playerMatches(data)
         ### deliver to view ###
         t = loader.get_template('player.html')
         c = Context({'player_id': name, 'stats': s, 'data': history})
@@ -79,27 +80,28 @@ def playerMath(data):
     stats['wins'] = int(data['rnk_wins'])  # wins
     stats['losses'] = int(data['rnk_losses'])  # losses
     stats['mmr'] = int(float(data['rnk_amm_team_rating']))  # mmr
-    stats['winpercent'] = str(int(float(stats['wins']) / float(stats['matches']) * 100)) + '%'  # win percent
     stats['kills'] = int(data['rnk_herokills'])  # total kills
     stats['deaths'] = int(data['rnk_deaths'])  # total deaths
     stats['assists'] = int(data['rnk_heroassists'])  # total deaths
-    stats['kdr'] = round(float(stats['kills']) / float(stats['deaths']), 2)  # kill death ratio
-    stats['kadr'] = round((float(stats['kills']) + float(stats['assists'])) / float(stats['deaths']), 2)  # k+A : d
     stats['cc'] = int(data['rnk_concedes'])  # total concedes
     stats['cccalls'] = int(data['rnk_concedevotes'])  # total concede votes
     stats['left'] = int(data['rnk_discos'])  # disconnects
-    stats['acs'] = round(int(data['rnk_teamcreepkills']) / float(stats['matches']), 1)  # average creep score
     stats['kicked'] = int(data['rnk_kicked'])  # kicked
     stats['hours'] = (int(data['rnk_secs']) / 60) / 60  # hours played
-    stats['atime'] = int(data['rnk_secs']) / stats['matches'] / 60  # average time
-    stats['akills'] = round(float(stats['kills']) / stats['matches'], 1)  # average kills
-    stats['adeaths'] = round(float(stats['deaths']) / stats['matches'], 1)  # average deaths
-    stats['aassists'] = round(float(stats['assists']) / stats['matches'], 1)  # average assists
-    stats['aconsumables'] = round(float(data['rnk_consumables']) / stats['matches'], 1)  # average consumables
-    stats['awards'] = round(float(data['rnk_wards']) / stats['matches'], 1)  # average wards
-    stats['acs'] = round(float(data['rnk_teamcreepkills']) / stats['matches'], 1)  # average creep score
-    stats['adenies'] = round(float(data['rnk_denies']) / stats['matches'], 1)  # average creep score
-    stats['axpmin'] = int(float(data['rnk_exp']) / (float(data['rnk_secs']) / 60))  # average xp / min
-    stats['agoldmin'] = int(float(data['rnk_gold']) / (float(data['rnk_secs']) / 60))  # average gold / min
-    stats['aactionsmin'] = int(float(data['rnk_actions']) / (float(data['rnk_secs']) / 60))  # average actions / min
+    if stats['matches'] > 0:
+        stats['acs'] = round(int(data['rnk_teamcreepkills']) / float(stats['matches']), 1)  # average creep score
+        stats['kadr'] = round((float(stats['kills']) + float(stats['assists'])) / float(stats['deaths']), 2)  # k+A : d
+        stats['kdr'] = round(float(stats['kills']) / float(stats['deaths']), 2)  # kill death ratio
+        stats['winpercent'] = str(int(float(stats['wins']) / float(stats['matches']) * 100)) + '%'  # win percent
+        stats['atime'] = int(data['rnk_secs']) / stats['matches'] / 60  # average time
+        stats['akills'] = round(float(stats['kills']) / stats['matches'], 1)  # average kills
+        stats['adeaths'] = round(float(stats['deaths']) / stats['matches'], 1)  # average deaths
+        stats['aassists'] = round(float(stats['assists']) / stats['matches'], 1)  # average assists
+        stats['aconsumables'] = round(float(data['rnk_consumables']) / stats['matches'], 1)  # average consumables
+        stats['awards'] = round(float(data['rnk_wards']) / stats['matches'], 1)  # average wards
+        stats['acs'] = round(float(data['rnk_teamcreepkills']) / stats['matches'], 1)  # average creep score
+        stats['adenies'] = round(float(data['rnk_denies']) / stats['matches'], 1)  # average creep score
+        stats['axpmin'] = int(float(data['rnk_exp']) / (float(data['rnk_secs']) / 60))  # average xp / min
+        stats['agoldmin'] = int(float(data['rnk_gold']) / (float(data['rnk_secs']) / 60))  # average gold / min
+        stats['aactionsmin'] = int(float(data['rnk_actions']) / (float(data['rnk_secs']) / 60))  # average actions / min
     return stats
