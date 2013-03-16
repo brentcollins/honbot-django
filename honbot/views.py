@@ -45,10 +45,11 @@ def players(request, name):
         if data is not None:
             history = match.recent_matches(data, 10)
         ### Get Match History Data ###
-        history_detail = match_history_data(history)
+        history_detail = match_history_data(history, s['id'])
+        history_detail.reverse()
         ### deliver to view ###
         t = loader.get_template('player.html')
-        c = Context({'player_id': name, 'stats': s, 'history': history, 'extras': history_detail})
+        c = Context({'player_id': name, 'stats': s, 'mdata': history_detail})
         return HttpResponse(t.render(c))
     else:
         t = loader.get_template('playerError.html')
@@ -56,7 +57,7 @@ def players(request, name):
         return HttpResponse(t.render(c))
 
 
-def match_history_data(history):
+def match_history_data(history, account_id):
     url = '/multi_match/all/matchids/'
     plus = False
     count = 0
@@ -70,7 +71,7 @@ def match_history_data(history):
             count += 1
     if count > 0:
         match.multimatch(get_json(url), count)
-    return match.get_player_from_matches(history)
+    return match.get_player_from_matches(history, account_id)
 
 
 def get_json(endpoint):

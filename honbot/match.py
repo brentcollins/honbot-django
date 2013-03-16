@@ -56,7 +56,6 @@ def load_match(match_id):
     """
     with open(directory + str(match_id) + '.json', 'rb') as f:
         data = json.load(f)
-    print data
     return data
 
 
@@ -86,14 +85,22 @@ def multimatch(data, count):
             players.append(player)
         match['players'] = players
         match_save(match, match['match_id'])
-        # print match['match_id']
-        # print match
+        print match['match_id']
+        print match
     return match
 
 
-def get_player_from_matches(history):
+def get_player_from_matches(history, account_id):
     """
-    this takes a list of matches and returns that player's info
+    this takes a list of matches and returns that player's stats in that match
     """
+    matches = []
     for m in history:
-        return load_match(m[0])
+        raw = load_match(m[0])
+        for x in raw['players']:
+            if int(x['id']) == int(account_id):
+                x['match_id'] = m[0]
+                x['winloss'] = m[1]
+                matches.append(x)
+                break
+    return matches

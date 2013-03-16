@@ -116,15 +116,21 @@
         <div class="span6 well well-small marketing stats-title">
             <h4>Recent Matches</h4>
             <table class="table table-condensed table-striped">
-                {% for m in history %}
+                {% for m in mdata %}
                     <tr>
-                        <td><a href='../../match/{{ data.0.0 }}'>{{ m.0 }}</a></td>
-                        <td>{{ m.1 }}</td>
+                        <td>
+                            {% if m.winloss %}
+                            <img src='/static/img/win.jpg'></img>
+                            {% else %}
+                            <img src='/static/img/loss.jpg'></img>
+                            {% endif %}
+                            <img src='/static/img/heroes/{{ m.hero }}/icon_128.jpg' width=30></img>
+                        </td>
+                        <td><a href='../../match/{{ m.match_id }}'>{{ m.match_id }}</a></td>
                     </tr>
                 {% endfor %}
             </table>
         </div>
     </div>
 </div>
-{{ extras }}
 {% endblock main_content %}
