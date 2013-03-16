@@ -43,15 +43,34 @@ def players(request, name):
         data = get_json(url)
         history = []
         if data is not None:
-            history = match.playerMatches(data)
+            history = match.recent_matches(data, 10)
+        ### Get Match History Data ###
+        history_detail = match_history_data(history)
         ### deliver to view ###
         t = loader.get_template('player.html')
-        c = Context({'player_id': name, 'stats': s, 'data': history})
+        c = Context({'player_id': name, 'stats': s, 'history': history, 'extras': history_detail})
         return HttpResponse(t.render(c))
     else:
         t = loader.get_template('playerError.html')
         c = Context()
         return HttpResponse(t.render(c))
+
+
+def match_history_data(history):
+    url = '/multi_match/all/matchids/'
+    plus = False
+    count = 0
+    for m in history:
+        if not match.checkfile(m[0]):
+            if plus:
+                url = url + '+' + str(m[0])
+            else:
+                url = url + str(m[0])
+                plus = True
+            count += 1
+    if count > 0:
+        match.multimatch(get_json(url), count)
+    return match.get_player_from_matches(history)
 
 
 def get_json(endpoint):
@@ -89,8 +108,8 @@ def playerMath(data):
     stats['cccalls'] = int(data['rnk_concedevotes'])  # total concede votes
     stats['left'] = int(data['rnk_discos'])  # disconnects
     stats['kicked'] = int(data['rnk_kicked'])  # kicked
-    stats['hours'] = (int(data['rnk_secs']) / 60) / 60  # hours played
     if stats['matches'] > 0:
+        stats['hours'] = (int(data['rnk_secs']) / 60) / 60  # hours played
         stats['acs'] = round(int(data['rnk_teamcreepkills']) / float(stats['matches']), 1)  # average creep score
         stats['kadr'] = round((float(stats['kills']) + float(stats['assists'])) / float(stats['deaths']), 2)  # k+A : d
         stats['kdr'] = round(float(stats['kills']) / float(stats['deaths']), 2)  # kill death ratio
