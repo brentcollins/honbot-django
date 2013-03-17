@@ -21,7 +21,6 @@ def recent_matches(match_json, results):
             temp = i.split('|')
             if temp[0] != '2':
                 temp.remove(temp[1])
-                print temp
                 matches.append(temp)
         matches.reverse()
         return matches[:results]
