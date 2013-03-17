@@ -37,7 +37,6 @@ def checkfile(match_id):
     check if match has been parsed before returns bool
     """
     if not os.path.exists(directory + str(match_id) + '.json'):
-        print match_id
         return False
     else:
         return True
@@ -64,30 +63,38 @@ def multimatch(data, count):
     """
     pass this multimatch api results and the number of matches. it will parse and save the useful bits
     """
-    for x in range(0, count):
+    allmatches = {}
+    listomatic = []
+    for m in data[0]:
         match = {}
-        match['match_id'] = int(data[0][x]['match_id'])
-        players = []
-        for j in range(0 + (10 * x), 9 + (10 * x)):
-            player = {}
-            player['id'] = data[1][j]['account_id']
-            player['s1'] = data[1][j]['slot_1']
-            player['s2'] = data[1][j]['slot_2']
-            player['s3'] = data[1][j]['slot_3']
-            player['s4'] = data[1][j]['slot_4']
-            player['s5'] = data[1][j]['slot_5']
-            player['s6'] = data[1][j]['slot_6']
-            player['kills'] = data[2][j]['herokills']
-            player['deaths'] = data[2][j]['deaths']
-            player['assists'] = data[2][j]['heroassists']
-            player['herodmg'] = data[2][j]['herodmg']
-            player['hero'] = data[2][j]['hero_id']
-            player['win'] = data[2][j]['wins']
-            players.append(player)
+        players = {}
+        listomatic.append(int(m['match_id']))
+        match['match_id'] = m['match_id']
         match['players'] = players
-        match_save(match, match['match_id'])
-        print match['match_id']
-        print match
+        allmatches[m['match_id']] = match
+    for m in data[2]:
+        player = {}
+        player['id'] = m['account_id']
+        player['kills'] = m['herokills']
+        player['deaths'] = m['deaths']
+        player['assists'] = m['heroassists']
+        player['herodmg'] = m['herodmg']
+        player['hero'] = m['hero_id']
+        player['win'] = bool(int(m['wins']))
+        allmatches[m['match_id']]['players'][m['account_id']] = player
+    # for m in data[1]:
+    #     player['s1'] = m['slot_1']
+    #     player['s2'] = m['slot_2']
+    #     player['s3'] = m['slot_3']
+    #     player['s4'] = m['slot_4']
+    #     player['s5'] = m['slot_5']
+    #     player['s6'] = m['slot_6']
+    # print allmatches
+    #print json.dumps(allmatches)
+    for m in listomatic:
+        match_save(allmatches[str(m)], m)
+    #     match['players'] = players
+    #     match_save(match, match['match_id'])
     return match
 
 
@@ -97,11 +104,9 @@ def get_player_from_matches(history, account_id):
     """
     matches = []
     for m in history:
+        temp = {}
         raw = load_match(m[0])
-        for x in raw['players']:
-            if int(x['id']) == int(account_id):
-                x['match_id'] = m[0]
-                x['winloss'] = m[1]
-                matches.append(x)
-                break
+        temp = raw['players'][str(account_id)]
+        temp['match_id'] = m[0]
+        matches.append(temp)
     return matches
