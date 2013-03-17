@@ -69,7 +69,7 @@ def match_history_data(history, account_id):
                 plus = True
             count += 1
     if count > 0:
-        match.multimatch(get_json(url), count)
+        match.multimatch(get_json(url), history)
     return match.get_player_from_matches(history, account_id)
 
 
