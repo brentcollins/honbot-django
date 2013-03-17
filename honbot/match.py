@@ -25,6 +25,7 @@ def recent_matches(match_json, results):
                 else:
                     temp[1] = False
                 matches.append(temp)
+        matches.reverse()
         return matches[:results]
     else:
         matches = []

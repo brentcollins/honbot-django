@@ -46,7 +46,6 @@ def players(request, name):
             history = match.recent_matches(data, 10)
         ### Get Match History Data ###
         history_detail = match_history_data(history, s['id'])
-        history_detail.reverse()
         ### deliver to view ###
         t = loader.get_template('player.html')
         c = Context({'player_id': name, 'stats': s, 'mdata': history_detail})
