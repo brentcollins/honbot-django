@@ -71,7 +71,9 @@ def match_history_data(history, account_id):
             count += 1
             needed.append(m)
     if count > 0:
-        match.multimatch(get_json(url), needed)
+        data = get_json(url)
+        if data is not None:
+            match.multimatch(data, needed)
     return match.get_player_from_matches(history, account_id)
 
 

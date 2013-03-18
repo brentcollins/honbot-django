@@ -51,9 +51,12 @@ def load_match(match_id):
     """
     open match from directory and return json
     """
-    with open(directory + str(match_id) + '.json', 'rb') as f:
-        data = json.load(f)
-    return data
+    if checkfile(match_id):
+        with open(directory + str(match_id) + '.json', 'rb') as f:
+            data = json.load(f)
+        return data
+    else:
+        return None
 
 
 def multimatch(data, history):
@@ -93,8 +96,9 @@ def get_player_from_matches(history, account_id):
     for m in history:
         temp = {}
         raw = load_match(m[0])
-        temp = raw['players'][str(account_id)]
-        temp['match_id'] = m[0]
-        temp['date'] = m[1]
-        matches.append(temp)
+        if raw is not None:
+            temp = raw['players'][str(account_id)]
+            temp['match_id'] = m[0]
+            temp['date'] = m[1]
+            matches.append(temp)
     return matches
