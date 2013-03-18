@@ -19,6 +19,15 @@ body {
     padding-bottom: 3px;
 }
 
+.recent-match tr:hover {
+    background-color: #D2DEE8 !important;
+}
+
+.recent-match td{
+    vertical-align: middle;
+    cursor: pointer;
+}
+
 .lightbox h6 {
     margin-bottom: 2px;
     margin-top: 5px;

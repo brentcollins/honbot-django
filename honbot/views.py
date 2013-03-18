@@ -60,6 +60,7 @@ def match_history_data(history, account_id):
     url = '/multi_match/all/matchids/'
     plus = False
     count = 0
+    needed = []
     for m in history:
         if not match.checkfile(m[0]):
             if plus:
@@ -68,8 +69,9 @@ def match_history_data(history, account_id):
                 url = url + str(m[0])
                 plus = True
             count += 1
+            needed.append(m)
     if count > 0:
-        match.multimatch(get_json(url), history)
+        match.multimatch(get_json(url), needed)
     return match.get_player_from_matches(history, account_id)
 
 

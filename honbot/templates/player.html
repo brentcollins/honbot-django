@@ -115,9 +115,9 @@
         </div>
         <div class="span6 well well-small marketing stats-title">
             <h4>Recent Matches</h4>
-            <table class="table table-condensed table-striped table-hover">
+            <table class="table table-condensed recent-match">
                 {% for m in mdata %}
-                    <tr>
+                    <tr href="../../match/{{ m.match_id }}">
                         <td>
                             {% if m.win %}
                             <img src='/static/img/win.jpg'></img>
@@ -139,4 +139,12 @@
         </div>
     </div>
 </div>
+<script>
+$(document).ready(function(){
+    $('table tr').click(function(){
+        window.location = $(this).attr('href');
+        return false;
+    });
+});
+</script>
 {% endblock main_content %}

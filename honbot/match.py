@@ -83,7 +83,6 @@ def multimatch(data, history):
     for m in history:
         allmatches[m[0]]['date'] = m[1]
         match_save(allmatches[m[0]], m[0])
-    return match
 
 
 def get_player_from_matches(history, account_id):
