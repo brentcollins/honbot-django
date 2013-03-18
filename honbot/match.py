@@ -73,6 +73,8 @@ def multimatch(data, history):
         match['players'] = players
         allmatches[m['match_id']] = match
     for m in data[2]:
+        matchlength = round(float(m['secs']) / 60, 1)
+        allmatches[m['match_id']]['matchlength'] = matchlength
         player = {}
         player['id'] = m['account_id']
         player['kills'] = m['herokills']
@@ -80,7 +82,20 @@ def multimatch(data, history):
         player['assists'] = m['heroassists']
         player['herodmg'] = m['herodmg']
         player['hero'] = m['hero_id']
+        player['position'] = m['position']
+        player['team'] = m['team']
+        player['consumables'] = m['consumables']
+        player['level'] = m['level']
+        player['goldlost2death'] = m['goldlost2death']
+        player['secsdead'] = m['secs_dead']
+        player['denies'] = m['denies']
+        player['gpm'] = round(int(m['gold']) / matchlength, 1)
+        player['cs'] = m['teamcreepkills']
+        player['xpm'] = round(int(m['exp']) / matchlength, 1)
+        player['apm'] = round(int(m['actions']) / matchlength, 1)
         player['win'] = bool(int(m['wins']))
+        player['smackdown'] = m['smackdown']
+        player['bdmg'] = m['bdmg']
         allmatches[m['match_id']]['players'][m['account_id']] = player
     ### Save to file ###
     for m in history:

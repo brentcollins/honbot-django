@@ -126,13 +126,9 @@
                             {% endif %}
                             <img src='/static/img/heroes/{{ m.hero }}/icon_128.jpg' width=30></img>
                         </td>
-                        <td>
-                            {{ m.kills }} / {{ m.deaths }} / {{ m.assists }}
-                        </td>
+                        <td>{{ m.kills }} / {{ m.deaths }} / {{ m.assists }}</td>
+                        <td>{{ m.date }}</td>
                         <td>{{ m.match_id }}</td>
-                        <td>
-                            {{ m.date }}
-                        </td>
                     </tr>
                 {% endfor %}
             </table>
