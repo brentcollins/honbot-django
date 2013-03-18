@@ -6,7 +6,18 @@ directory = 'match/'
 
 
 def match(match_id):
-    return 5
+    if checkfile(match_id):
+        return prepare_match(load_match(match_id), match_id)
+
+
+def prepare_match(data, match_id):
+    match = {}
+    players = [None]*10
+    for p in data['players']:
+        players[int(data['players'][p]['position'])] = data['players'][p]
+    match['matchlength'] = data['matchlength']
+    match['players'] = players
+    return match
 
 
 def recent_matches(match_json, results):
@@ -64,11 +75,9 @@ def multimatch(data, history):
     pass this multimatch api results and the number of matches. it will parse and save the useful bits
     """
     allmatches = {}
-    #listomatic = []
     for m in data[0]:
         match = {}
         players = {}
-        #listomatic.append(int(m['match_id']))
         match['match_id'] = m['match_id']
         match['players'] = players
         allmatches[m['match_id']] = match
