@@ -47,7 +47,7 @@ def players(request, name):
         return HttpResponse(t.render(c))
     else:
         t = loader.get_template('playerError.html')
-        c = Context()
+        c = Context({'player_id': name})
         return HttpResponse(t.render(c))
 
 
