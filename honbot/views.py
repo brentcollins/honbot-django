@@ -52,6 +52,9 @@ def players(request, name):
 
 
 def match_history_data(history, account_id):
+    """
+    this will take a player history and decide which matches need to be downloaded and pass them to a multimatch api call
+    """
     url = '/multi_match/all/matchids/'
     plus = False
     count = 0
@@ -66,9 +69,13 @@ def match_history_data(history, account_id):
             count += 1
             needed.append(m)
     if count > 0:
+        print url
         data = get_json(url)
         if data is not None:
+            print "everything is fine in match_data_history"
             match.multimatch(data, needed)
+        else:
+            print "no data returned from api call"
     return match.get_player_from_matches(history, account_id)
 
 
@@ -81,10 +88,11 @@ def get_json(endpoint):
     while True:
         raw = requests.get(url)
         if raw.status_code == 429:
-            time.sleep(1)
+            time.sleep(0.5)
         elif raw.status_code == 200:
             break
         else:
+            print raw.status_code
             return None
     return raw.json()
 

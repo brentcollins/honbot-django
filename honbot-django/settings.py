@@ -1,5 +1,5 @@
 # Django settings for honbot-django
-import os
+import os.path
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG

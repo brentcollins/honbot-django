@@ -10,7 +10,58 @@
     </div>
 </header>
 <br>
-{{ stats.players.0 }}
-{{ match_id }} is match id <br>
+<div class='container-fluid'>
+    <div class="row-fluid">
+        <div class="span12 well well-small marketing stats-title">
+            <table class="table table-condensed table-striped">
+                <thead>
+                    <tr>
+                        <th>Player</th>
+                        <th>Items</th>
+                        <th>Lvl</th>
+                        <th>K</th>
+                        <th>D</th>
+                        <th>A</th>
+                        <th>KDR</th>
+                        <th>CK</th>
+                        <th>CD</th>
+                        <th>XP</th>
+                        <th>APM</th>
+                        <th>Wards</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for m in stats.players %}
+                {% if m.position == '5' %}</tbody><tbody>{% endif %}
+                    <tr>
+                        <td>
+                            <img src='/static/img/p/{{ m.position }}.jpg'>
+                            <img src='/static/img/heroes/{{ m.hero }}/icon_128.jpg' width=30> 
+                            <a href="../../player/{{ m.nickname }}">
+                                {{ m.nickname }} 
+                            </a>
+                        </td>
+                        <td>
+                            {% for i in m.items %}
+                                <img src='/static/img/items/{{ i }}.jpg' width=30>
+                            {% endfor %}
+                        </td>
+                        <td>{{ m.level }}</td>
+                        <td>{{ m.kills }}</td>
+                        <td>{{ m.deaths }}</td>
+                        <td>{{ m.assists }}</td>
+                        <td>{{ m.kdr }}</td>
+                        <td>{{ m.cs }}</td>
+                        <td>{{ m.denies }}</td>
+                        <td>{{ m.xpm }}</td>
+                        <td>{{ m.apm }}</td>
+                        <td>{{ m.wards }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 {{ stats }}
 {% endblock main_content %}
