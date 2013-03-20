@@ -30,15 +30,18 @@ def recent_matches(match_json, results):
     """
     returns specifed number of recent matches and win loss status as bool
     """
-    print json.dumps(match_json)
     if match_json[0]['history'] is not None:
         data = match_json[0]['history'].split(',')
         matches = []
         temp = []
         for i in data:
             temp = i.split('|')
-            if temp[0] != '2':
-                temp.remove(temp[1])
+            print temp[0]
+            temp.pop(1)
+            if len(matches) > 0:
+                if matches[-1][0] != temp[0]:
+                    matches.append(temp)
+            else:
                 matches.append(temp)
         matches.reverse()
         return matches[:results]

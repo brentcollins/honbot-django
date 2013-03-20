@@ -18,16 +18,17 @@
                     <tr>
                         <th>Player</th>
                         <th>Items</th>
-                        <th>Lvl</th>
+                        <th>lvl</th>
                         <th>K</th>
                         <th>D</th>
                         <th>A</th>
                         <th>KDR</th>
                         <th>CK</th>
                         <th>CD</th>
+                        <th>GPM</th>
                         <th>XP</th>
                         <th>APM</th>
-                        <th>Wards</th>
+                        <th>W</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -55,6 +56,7 @@
                         <td>{{ m.kdr }}</td>
                         <td>{{ m.cs }}</td>
                         <td>{{ m.denies }}</td>
+                        <td>{{ m.gpm }}</td>
                         <td>{{ m.xpm }}</td>
                         <td>{{ m.apm }}</td>
                         <td>{{ m.wards }}</td>
@@ -65,5 +67,5 @@
         </div>
     </div>
 </div>
-{{ stats }}
+
 {% endblock main_content %}
