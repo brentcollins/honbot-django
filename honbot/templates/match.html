@@ -4,7 +4,12 @@
     <div class='container'>
         <h1>{{ match_id }}</h1>
         <p class="lead">
-            <span class="text-success">W: {{ stats.wins }}</span> <span class="muted">|</span>
+            {% if stats.players.0.win %}
+                <span class="text-success">Legion Wins!</span>
+            {% else %}
+                <span class="text-error">Hellbourne Wins!</span>
+            {% endif %}
+            <span class="muted">|</span>
             <span class="muted">Length: {{ stats.matchlength }}min</span>
         </p>
     </div>
@@ -74,7 +79,6 @@
         </div>
     </div>
 </div>
-
 <script>
 var data = {
     labels : ["January","February","March","April","May","June","July"],
