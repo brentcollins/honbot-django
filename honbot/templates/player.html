@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block main_content %}
 <header class="jumbotron subhead" id="overview">
-    <div class='container-fluid'>
+    <div class='container'>
         <h1>{{ nick }}</h1>
         <p class="lead">
             <span class="text-info">MMR: {{ stats.mmr }}</span> <span class="muted">|</span>
@@ -13,8 +13,8 @@
 </header>
 <br>
 
-<div class='container-fluid'>
-    <div class="row-fluid">
+<div class='container'>
+    <div class="row">
         <div class="span3 well well-small marketing stats-title">
             <h4>Lifetime</h4>
             <table class="table table-condensed table-striped">
@@ -113,7 +113,7 @@
                 </tr>
             </table>
         </div>
-        <div class="span6 well well-small marketing stats-title">
+        <div class="span5 well well-small marketing stats-title">
             <h4>Recent Matches</h4>
             <table class="table table-condensed recent-match">
                 {% for m in mdata %}

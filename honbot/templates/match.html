@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block main_content %}
 <header class="jumbotron subhead" id="overview">
-    <div class='container-fluid'>
+    <div class='container'>
         <h1>{{ match_id }}</h1>
         <p class="lead">
             <span class="text-success">W: {{ stats.wins }}</span> <span class="muted">|</span>
@@ -10,8 +10,8 @@
     </div>
 </header>
 <br>
-<div class='container-fluid'>
-    <div class="row-fluid">
+<div class='container'>
+    <div class="row">
         <div class="span12 well well-small marketing stats-title">
             <table class="table table-condensed table-striped" id="no-more-tables">
                 <thead>
@@ -67,5 +67,37 @@
         </div>
     </div>
 </div>
+<div class='container'>
+    <div class="row">
+        <div class="span12 well well-small marketing">
+            <canvas id="myChart" width="400" height="400"></canvas>
+        </div>
+    </div>
+</div>
+
+<script>
+var data = {
+    labels : ["January","February","March","April","May","June","July"],
+    datasets : [
+        {
+            fillColor : "rgba(220,220,220,0.5)",
+            strokeColor : "rgba(220,220,220,1)",
+            data : [65,59,90,81,56,55,40]
+        },
+        {
+            fillColor : "rgba(151,187,205,0.5)",
+            strokeColor : "rgba(151,187,205,1)",
+            data : [68,48,40,59,-100,127,100]
+        }
+    ]
+}
+
+var options = { animation : false };
+
+//Get the context of the canvas element we want to select
+var ctx = document.getElementById("myChart").getContext("2d");
+var myNewChart = new Chart(ctx).Bar(data,options);
+
+</script>
 
 {% endblock main_content %}
