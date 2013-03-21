@@ -36,7 +36,6 @@ def recent_matches(match_json, results):
         temp = []
         for i in data:
             temp = i.split('|')
-            print temp[0]
             temp.pop(1)
             if len(matches) > 0:
                 if matches[-1][0] != temp[0]:
@@ -84,6 +83,7 @@ def multimatch(data, history):
     """
     pass this multimatch api results and the number of matches. it will parse and save the useful bits
     """
+    print json.dumps(data)
     allmatches = {}
     for m in history:
         match = {}
@@ -120,7 +120,9 @@ def multimatch(data, history):
         player['win'] = bool(int(m['wins']))
         player['smackdown'] = m['smackdown']
         player['bdmg'] = m['bdmg']
+        player['nickname'] = m['nickname']
         allmatches[m['match_id']]['players'][m['account_id']] = player
+        allmatches[m['match_id']]['players'][m['account_id']]['items'] = None
     for m in data[1]:
         items = [None]*6
         items[0] = m['slot_1']

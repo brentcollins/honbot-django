@@ -43,7 +43,7 @@ def players(request, name):
         history_detail = match_history_data(history, s['id'])
         ### deliver to view ###
         t = loader.get_template('player.html')
-        c = Context({'player_id': name, 'stats': s, 'mdata': history_detail})
+        c = Context({'nick': name, 'stats': s, 'mdata': history_detail})
         return HttpResponse(t.render(c))
     else:
         t = loader.get_template('playerError.html')

@@ -2,7 +2,7 @@
 {% block main_content %}
 <header class="jumbotron subhead" id="overview">
     <div class='container-fluid'>
-        <h2>{{ match_id }}</h2>
+        <h1>{{ match_id }}</h1>
         <p class="lead">
             <span class="text-success">W: {{ stats.wins }}</span> <span class="muted">|</span>
             <span class="muted">Length: {{ stats.matchlength }}min</span>
@@ -13,7 +13,7 @@
 <div class='container-fluid'>
     <div class="row-fluid">
         <div class="span12 well well-small marketing stats-title">
-            <table class="table table-condensed table-striped">
+            <table class="table table-condensed table-striped" id="no-more-tables">
                 <thead>
                     <tr>
                         <th>Player</th>
@@ -35,31 +35,31 @@
                 {% for m in stats.players %}
                 {% if m.position == '5' %}</tbody><tbody>{% endif %}
                     <tr>
-                        <td>
+                        <td data-title="Player">
                             <img src='/static/img/p/{{ m.position }}.jpg'>
                             <img src='/static/img/heroes/{{ m.hero }}/icon_128.jpg' width=30> 
                             <a href="../../player/{{ m.nickname }}">
                                 {{ m.nickname }} 
                             </a>
                         </td>
-                        <td>
+                        <td data-title="Items">
                             {% for i in m.items %}
                                 {% if i %}
                                 <img src='/static/img/items/{{ i }}.jpg' width=30>
                                 {% endif %}
                             {% endfor %}
                         </td>
-                        <td>{{ m.level }}</td>
-                        <td>{{ m.kills }}</td>
-                        <td>{{ m.deaths }}</td>
-                        <td>{{ m.assists }}</td>
-                        <td>{{ m.kdr }}</td>
-                        <td>{{ m.cs }}</td>
-                        <td>{{ m.denies }}</td>
-                        <td>{{ m.gpm }}</td>
-                        <td>{{ m.xpm }}</td>
-                        <td>{{ m.apm }}</td>
-                        <td>{{ m.wards }}</td>
+                        <td data-title="lvl">{{ m.level }}</td>
+                        <td data-title="Kills">{{ m.kills }}</td>
+                        <td data-title="Deaths">{{ m.deaths }}</td>
+                        <td data-title="Assists">{{ m.assists }}</td>
+                        <td data-title="KDR">{{ m.kdr }}</td>
+                        <td data-title="CK">{{ m.cs }}</td>
+                        <td data-title="CD">{{ m.denies }}</td>
+                        <td data-title="GPM">{{ m.gpm }}</td>
+                        <td data-title="XP">{{ m.xpm }}</td>
+                        <td data-title="APM">{{ m.apm }}</td>
+                        <td data-title="Wards">{{ m.wards }}</td>
                     </tr>
                 {% endfor %}
                 </tbody>
