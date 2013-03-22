@@ -2,13 +2,13 @@
 {% block main_content %}
 <header class="jumbotron subhead" id="overview">
     <div class='container'>
-        <h1>{{ match_id }}</h1>
+        {% if stats.players.0.win %}
+            <h1 class="text-success">Legion Wins!</h1>
+        {% else %}
+            <h1 class="text-error">Hellbourne Wins!</h1>
+        {% endif %}
         <p class="lead">
-            {% if stats.players.0.win %}
-                <span class="text-success">Legion Wins!</span>
-            {% else %}
-                <span class="text-error">Hellbourne Wins!</span>
-            {% endif %}
+            <span>{{ match_id }}</span>
             <span class="muted">|</span>
             <span class="muted">Length: {{ stats.matchlength }}min</span>
         </p>
@@ -75,33 +75,134 @@
 <div class='container'>
     <div class="row">
         <div class="span12 well well-small marketing">
-            <canvas id="myChart" width="400" height="400"></canvas>
+            <div class="tabbable"> <!-- Only required for left/right tabs -->
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab1" data-toggle="tab">GPM</a></li>
+                    <li><a href="#tab2" data-toggle="tab">APM</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab1">
+                        <div class="row">
+
+                        <div class="span6 stats-title">
+                            <h4>Legion GPM</h4>
+                            <div id="lgpm" style="min-width: 300px; height: 300px; margin: 0 auto"></div>
+                        </div>
+                        <div class="span6 stats-title">
+                            <h4>Hellborne GPM</h4>
+                            <div id="hgpm" style="min-width: 300px; height: 300px; margin: 0 auto"></div>
+                        </div></div>
+                    </div>
+                    <div class="tab-pane" id="tab2">
+                        <p>Howdy, I'm in Section 2.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
 <script>
-var data = {
-    labels : ["January","February","March","April","May","June","July"],
-    datasets : [
-        {
-            fillColor : "rgba(220,220,220,0.5)",
-            strokeColor : "rgba(220,220,220,1)",
-            data : [65,59,90,81,56,55,40]
-        },
-        {
-            fillColor : "rgba(151,187,205,0.5)",
-            strokeColor : "rgba(151,187,205,1)",
-            data : [68,48,40,59,-100,127,100]
-        }
-    ]
-}
-
-var options = { animation : false };
-
-//Get the context of the canvas element we want to select
-var ctx = document.getElementById("myChart").getContext("2d");
-var myNewChart = new Chart(ctx).Bar(data,options);
-
+//legion gpm
+$(function () {
+    var chart;
+    $(document).ready(function() {
+        chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'lgpm',
+                backgroundColor: null,
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        color: '#000000',
+                        connectorColor: '#000000',
+                        formatter: function() {
+                            return '<b>'+ this.point.name +'</b>: '+ this.y + 'gpm';
+                        }
+                    }
+                }
+            },
+            title: {
+               text: ''
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                type: 'pie',
+                name: 'GPM',
+                data: [
+                    ['{{ stats.players.0.nickname }}', {{ stats.players.0.gpm }}],
+                    ['{{ stats.players.1.nickname }}', {{ stats.players.1.gpm }}],
+                    ['{{ stats.players.2.nickname }}', {{ stats.players.2.gpm }}],
+                    ['{{ stats.players.3.nickname }}', {{ stats.players.3.gpm }}],
+                    ['{{ stats.players.4.nickname }}', {{ stats.players.4.gpm }}]
+                ]
+            }]
+        });
+    });
+    
+});
+//hellborne gpm
+$(function () {
+    var chart;
+    $(document).ready(function() {
+        chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'hgpm',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: 'Browser market shares at a specific website, 2010'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage}%</b>',
+                percentageDecimals: 1
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        color: '#000000',
+                        connectorColor: '#000000',
+                        formatter: function() {
+                            return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Browser share',
+                data: [
+                    ['Firefox',   45.0],
+                    ['IE',       26.8],
+                    {
+                        name: 'Chrome',
+                        y: 12.8,
+                        sliced: true,
+                        selected: true
+                    },
+                    ['Safari',    8.5],
+                    ['Opera',     6.2],
+                    ['Others',   0.7]
+                ]
+            }]
+        });
+    });
+    
+});
 </script>
 
 {% endblock main_content %}
