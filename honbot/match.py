@@ -109,6 +109,7 @@ def multimatch(data, history):
         player['secsdead'] = m['secs_dead']
         player['wards'] = m['wards']
         player['denies'] = m['denies']
+        player['herodmg'] = m['herodmg']
         player['gpm'] = round(int(m['gold']) / matchlength, 1)
         player['cs'] = m['teamcreepkills']
         player['xpm'] = round(int(m['exp']) / matchlength, 1)
