@@ -115,6 +115,9 @@ $(function () {
                 plotBorderWidth: null,
                 plotShadow: false
             },
+            tooltip: {
+                enabled: false
+            },
             plotOptions: {
                 pie: {
                     allowPointSelect: true,
@@ -135,9 +138,11 @@ $(function () {
             credits: {
                 enabled: false
             },
+            colors: ['#003fe2', '#00c19e', '#5d0072', '#fefb4a', '#ff7d29'],
+            exporting: { enabled: false },
             series: [{
                 type: 'pie',
-                name: 'GPM',
+                name: 'Gold Per Minute',
                 data: [
                     ['{{ stats.players.0.nickname }}', {{ stats.players.0.gpm }}],
                     ['{{ stats.players.1.nickname }}', {{ stats.players.1.gpm }}],
@@ -157,16 +162,13 @@ $(function () {
         chart = new Highcharts.Chart({
             chart: {
                 renderTo: 'hgpm',
+                backgroundColor: null,
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
                 plotShadow: false
             },
-            title: {
-                text: 'Browser market shares at a specific website, 2010'
-            },
             tooltip: {
-                pointFormat: '{series.name}: <b>{point.percentage}%</b>',
-                percentageDecimals: 1
+                enabled: false
             },
             plotOptions: {
                 pie: {
@@ -177,26 +179,28 @@ $(function () {
                         color: '#000000',
                         connectorColor: '#000000',
                         formatter: function() {
-                            return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+                            return '<b>'+ this.point.name +'</b>: '+ this.y + 'gpm';
                         }
                     }
                 }
             },
+            title: {
+               text: ''
+            },
+            credits: {
+                enabled: false
+            },
+            colors: ['#ff44ab', '#959698', '#4cc3ee', '#006448', '#562507'],
+            exporting: { enabled: false },
             series: [{
                 type: 'pie',
-                name: 'Browser share',
+                name: 'Gold Per Minute',
                 data: [
-                    ['Firefox',   45.0],
-                    ['IE',       26.8],
-                    {
-                        name: 'Chrome',
-                        y: 12.8,
-                        sliced: true,
-                        selected: true
-                    },
-                    ['Safari',    8.5],
-                    ['Opera',     6.2],
-                    ['Others',   0.7]
+                    ['{{ stats.players.5.nickname }}', {{ stats.players.5.gpm }}],
+                    ['{{ stats.players.6.nickname }}', {{ stats.players.6.gpm }}],
+                    ['{{ stats.players.7.nickname }}', {{ stats.players.7.gpm }}],
+                    ['{{ stats.players.8.nickname }}', {{ stats.players.8.gpm }}],
+                    ['{{ stats.players.9.nickname }}', {{ stats.players.9.gpm }}]
                 ]
             }]
         });
