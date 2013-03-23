@@ -83,7 +83,6 @@ def multimatch(data, history):
     """
     pass this multimatch api results and the number of matches. it will parse and save the useful bits
     """
-    print json.dumps(data)
     allmatches = {}
     for m in history:
         match = {}
@@ -148,7 +147,7 @@ def get_player_from_matches(history, account_id):
     for m in history:
         temp = {}
         raw = load_match(m[0])
-        if raw is not None:
+        if raw is not None and int(m[0]) > 60000000:
             temp = raw['players'][str(account_id)]
             temp['match_id'] = m[0]
             temp['date'] = m[1]

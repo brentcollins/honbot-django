@@ -92,7 +92,6 @@ def get_json(endpoint):
         elif raw.status_code == 200:
             break
         else:
-            print raw.status_code
             return None
     return raw.json()
 

@@ -75,54 +75,78 @@
 <div class='container'>
     <div class="row">
         <div class="span12 well well-small marketing">
-            <div class="tabbable"> <!-- Only required for left/right tabs -->
-                <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tab1" data-toggle="tab">Hero Damage</a></li>
-                    <li><a href="#tab2" data-toggle="tab">Gold Per Minute</a></li>
-                </ul>
-                <div class="tab-content">
-                    <div class="tab-pane active" id="tab1">
-                        <div class="row">
-                            <div class="span6 stats-title">
-                                <h4>Legion Hero Damage</h4>
-                                <div id="ldmg" style="min-width: 300px; height: 300px; margin: 0 auto"></div>
-                            </div>
-                            <div class="span6 stats-title">
-                                <h4>Hellborne Hero Damage</h4>
-                                <div id="hdmg" style="min-width: 300px; height: 300px; margin: 0 auto"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane" id="tab2">
-                        <div class="row">
-                            <div class="span6 stats-title">
-                                <h4>Legion GPM</h4>
-                                <div id="lgpm" style="min-width: 300px; height: 300px; margin: 0 auto"></div>
-                            </div>
-                            <div class="span6 stats-title">
-                                <h4>Hellborne GPM</h4>
-                                <div id="hgpm" style="min-width: 300px; height: 300px; margin: 0 auto"></div>
-                            </div>
-                        </div>
-                    </div>
+            <legend>Hero Damage</legend>
+            <div class="row">
+                <div class="span6 stats-title">
+                    <div id="ldmg" style="min-width: 300px; height: 300px; margin: 0 auto"></div>
+                </div>
+                <div class="span6 stats-title">
+                    <div id="hdmg" style="min-width: 300px; height: 300px; margin: 0 auto"></div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
+<div class='container'>
+    <div class="row">
+        <div class="span12 well well-small marketing">
+            <legend>Gold Per Minute</legend>
+            <div class="row">
+                <div class="span6 stats-title">
+                    <div id="lgpm" style="min-width: 300px; height: 300px; margin: 0 auto"></div>
+                </div>
+                <div class="span6 stats-title">
+                    <div id="hgpm" style="min-width: 300px; height: 300px; margin: 0 auto"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
 //legion herodmg
 $(function () {
     var chart;
     $(document).ready(function() {
+Highcharts.setOptions({
+    colors: [{
+        linearGradient: [0, 0, 0, 300],
+        stops: [
+            [0, '#003fe2'],
+            [1, '#000000']
+        ]
+    }, {
+        linearGradient: [0, 0, 0, 300],
+        stops: [
+            [0, '#00F5C8'],
+            [1, '#005949']
+        ]
+    }, {
+        linearGradient: [0, 0, 0, 350],
+        stops: [
+            [0, '#A000C4'],
+            [1, '#000000']
+        ]
+    }, {
+        linearGradient: [0, 0, 0, 500],
+        stops: [
+            [0, '#FAF614'],
+            [1, '#403F00']
+        ]
+    }, {
+        linearGradient: [0, 0, 0, 300],
+        stops: [
+            [0, '#ff7d29'],
+            [1, '#000000']
+        ]
+    }]
+});
         chart = new Highcharts.Chart({
             chart: {
                 renderTo: 'ldmg',
                 backgroundColor: null,
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
-                plotShadow: false
+                plotShadow: false,
             },
             tooltip: {
                 enabled: false
@@ -131,6 +155,7 @@ $(function () {
                 pie: {
                     allowPointSelect: true,
                     cursor: 'pointer',
+                    animation: false,
                     dataLabels: {
                         enabled: true,
                         color: '#000000',
@@ -147,7 +172,6 @@ $(function () {
             credits: {
                 enabled: false
             },
-            colors: ['#003fe2', '#00c19e', '#5d0072', '#fefb4a', '#ff7d29'],
             exporting: { enabled: false },
             series: [{
                 type: 'pie',
@@ -164,10 +188,45 @@ $(function () {
     });
     
 });
+</script>
+<script>
 //hellbourne herodmg
 $(function () {
     var chart;
     $(document).ready(function() {
+Highcharts.setOptions({
+    colors: [{
+        linearGradient: [0, 0, 0, 300],
+        stops: [
+            [0, '#ff44ab'],
+            [1, '#000000']
+        ]
+    }, {
+        linearGradient: [0, 0, 0, 300],
+        stops: [
+            [0, '#959698'],
+            [1, '#000000']
+        ]
+    }, {
+        linearGradient: [0, 0, 0, 350],
+        stops: [
+            [0, '#4cc3ee'],
+            [1, '#000000']
+        ]
+    }, {
+        linearGradient: [0, 0, 0, 350],
+        stops: [
+            [0, '#006448'],
+            [1, '#000000']
+        ]
+    }, {
+        linearGradient: [0, 0, 0, 300],
+        stops: [
+            [0, '#4F1F02'],
+            [1, '#000000']
+        ]
+    }]
+});
         chart = new Highcharts.Chart({
             chart: {
                 renderTo: 'hdmg',
@@ -183,6 +242,7 @@ $(function () {
                 pie: {
                     allowPointSelect: true,
                     cursor: 'pointer',
+                    animation: false,
                     dataLabels: {
                         enabled: true,
                         color: '#000000',
@@ -199,27 +259,61 @@ $(function () {
             credits: {
                 enabled: false
             },
-            colors: ['#ff44ab', '#959698', '#4cc3ee', '#006448', '#562507'],
             exporting: { enabled: false },
             series: [{
                 type: 'pie',
                 name: 'Gold Per Minute',
                 data: [
-                    ['{{ stats.players.0.nickname }}', {{ stats.players.0.herodmg }}],
-                    ['{{ stats.players.1.nickname }}', {{ stats.players.1.herodmg }}],
-                    ['{{ stats.players.2.nickname }}', {{ stats.players.2.herodmg }}],
-                    ['{{ stats.players.3.nickname }}', {{ stats.players.3.herodmg }}],
-                    ['{{ stats.players.4.nickname }}', {{ stats.players.4.herodmg }}]
+                    ['{{ stats.players.5.nickname }}', {{ stats.players.5.herodmg }}],
+                    ['{{ stats.players.6.nickname }}', {{ stats.players.6.herodmg }}],
+                    ['{{ stats.players.7.nickname }}', {{ stats.players.7.herodmg }}],
+                    ['{{ stats.players.8.nickname }}', {{ stats.players.8.herodmg }}],
+                    ['{{ stats.players.9.nickname }}', {{ stats.players.9.herodmg }}]
                 ]
             }]
         });
     });
     
 });
+</script>
+<script>
 //legion gpm
 $(function () {
     var chart;
     $(document).ready(function() {
+Highcharts.setOptions({
+    colors: [{
+        linearGradient: [0, 0, 0, 300],
+        stops: [
+            [0, '#003fe2'],
+            [1, '#000000']
+        ]
+    }, {
+        linearGradient: [0, 0, 0, 300],
+        stops: [
+            [0, '#00F5C8'],
+            [1, '#005949']
+        ]
+    }, {
+        linearGradient: [0, 0, 0, 350],
+        stops: [
+            [0, '#A000C4'],
+            [1, '#000000']
+        ]
+    }, {
+        linearGradient: [0, 0, 0, 500],
+        stops: [
+            [0, '#FAF614'],
+            [1, '#403F00']
+        ]
+    }, {
+        linearGradient: [0, 0, 0, 300],
+        stops: [
+            [0, '#ff7d29'],
+            [1, '#000000']
+        ]
+    }]
+});
         chart = new Highcharts.Chart({
             chart: {
                 renderTo: 'lgpm',
@@ -235,6 +329,7 @@ $(function () {
                 pie: {
                     allowPointSelect: true,
                     cursor: 'pointer',
+                    animation: false,
                     dataLabels: {
                         enabled: true,
                         color: '#000000',
@@ -251,7 +346,6 @@ $(function () {
             credits: {
                 enabled: false
             },
-            colors: ['#003fe2', '#00c19e', '#5d0072', '#fefb4a', '#ff7d29'],
             exporting: { enabled: false },
             series: [{
                 type: 'pie',
@@ -268,17 +362,52 @@ $(function () {
     });
     
 });
+</script>
+<script>
 //hellborne gpm
 $(function () {
     var chart;
     $(document).ready(function() {
+Highcharts.setOptions({
+    colors: [{
+        linearGradient: [0, 0, 0, 300],
+        stops: [
+            [0, '#ff44ab'],
+            [1, '#000000']
+        ]
+    }, {
+        linearGradient: [0, 0, 0, 300],
+        stops: [
+            [0, '#959698'],
+            [1, '#000000']
+        ]
+    }, {
+        linearGradient: [0, 0, 0, 350],
+        stops: [
+            [0, '#4cc3ee'],
+            [1, '#000000']
+        ]
+    }, {
+        linearGradient: [0, 0, 0, 350],
+        stops: [
+            [0, '#006448'],
+            [1, '#000000']
+        ]
+    }, {
+        linearGradient: [0, 0, 0, 300],
+        stops: [
+            [0, '#4F1F02'],
+            [1, '#000000']
+        ]
+    }]
+});
         chart = new Highcharts.Chart({
             chart: {
                 renderTo: 'hgpm',
                 backgroundColor: null,
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
-                plotShadow: false
+                plotShadow: false,
             },
             tooltip: {
                 enabled: false
@@ -287,6 +416,7 @@ $(function () {
                 pie: {
                     allowPointSelect: true,
                     cursor: 'pointer',
+                    animation: false,
                     dataLabels: {
                         enabled: true,
                         color: '#000000',
@@ -303,7 +433,6 @@ $(function () {
             credits: {
                 enabled: false
             },
-            colors: ['#ff44ab', '#959698', '#4cc3ee', '#006448', '#562507'],
             exporting: { enabled: false },
             series: [{
                 type: 'pie',
