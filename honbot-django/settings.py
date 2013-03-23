@@ -1,15 +1,19 @@
 # Django settings for honbot-django
 import os.path
 
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
+DEBUG = False
+handler500 = 'honbot.views.errorfive'
+TEMPLATE_DEBUG = False
+ADMIN_ENABLED = False
 TOKEN = 'W28U7I8XM2NAMW6E'
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    # ('Scott', 'email@emai.com'),
 )
 
 MANAGERS = ADMINS
+
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 DATABASES = {
     'default': {
@@ -92,6 +96,7 @@ TEMPLATE_LOADERS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    'django.middleware.gzip.GZipMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -113,7 +118,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.admin',
+    #django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'honbot',
