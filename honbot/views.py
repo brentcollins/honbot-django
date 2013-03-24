@@ -8,6 +8,10 @@ import time
 import match
 
 
+def v404(request):
+    return render_to_response('playerError.html')
+
+
 def home(request):
     return render_to_response('home.html')
 
@@ -15,9 +19,14 @@ def home(request):
 def matches(request, match_id):
     mid = int(match_id)
     stats = match.match(mid)
-    t = loader.get_template('match.html')
-    c = Context({'match_id': mid, 'stats': stats})
-    return HttpResponse(t.render(c))
+    if stats is not None:
+        t = loader.get_template('match.html')
+        c = Context({'match_id': mid, 'stats': stats})
+        return HttpResponse(t.render(c))
+    else:
+        t = loader.get_template('playerError.html')
+        c = Context({'player_id': match_id})
+        return HttpResponse(t.render(c))
 
 
 def players(request, name):
@@ -53,7 +62,8 @@ def players(request, name):
 
 def match_history_data(history, account_id):
     """
-    this will take a player history and decide which matches need to be downloaded and pass them to a multimatch api call
+    this will take a player history and decide which matches need to be downloaded and pass
+    them to a multimatch api call this will auto call the function to parse a single players match history
     """
     url = '/multi_match/all/matchids/'
     plus = False
@@ -69,14 +79,14 @@ def match_history_data(history, account_id):
             count += 1
             needed.append(m)
     if count > 0:
-        print url
         data = get_json(url)
         if data is not None:
-            print "everything is fine in match_data_history"
             match.multimatch(data, needed)
+            return match.get_player_from_matches(history, account_id)
         else:
-            print "no data returned from api call"
-    return match.get_player_from_matches(history, account_id)
+            return match.get_player_from_matches(history, account_id)
+    else:
+        return match.get_player_from_matches(history, account_id)
 
 
 def get_json(endpoint):

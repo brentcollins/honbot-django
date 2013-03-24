@@ -1,5 +1,6 @@
 import os
 import json
+import views
 
 
 directory = 'match/'
@@ -11,6 +12,15 @@ def match(match_id):
     """
     if checkfile(match_id):
         return prepare_match(load_match(match_id), match_id)
+    else:
+        url = '/multi_match/all/matchids/' + str(match_id)
+        data = views.get_json(url)
+        h = [[str(match_id), '1/1/1']]
+        if data is not None:
+            multimatch(data, h)
+            return match(match_id)
+        else:
+            return None
 
 
 def prepare_match(data, match_id):
@@ -53,10 +63,10 @@ def checkfile(match_id):
     """
     check if match has been parsed before returns bool
     """
-    if not os.path.exists(directory + str(match_id) + '.json'):
-        return False
-    else:
+    if os.path.exists(directory + str(match_id) + '.json'):
         return True
+    else:
+        return False
 
 
 def match_save(data, match_id):

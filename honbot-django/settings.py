@@ -1,11 +1,11 @@
 # Django settings for honbot-django
 import os.path
 
-DEBUG = False
+DEBUG = True
 handler500 = 'honbot.views.errorfive'
 TEMPLATE_DEBUG = False
 ADMIN_ENABLED = False
-TOKEN = 'W28U7I8XM2NAMW6E'
+TOKEN = 'JXZXEVNEBQAY99KN'
 
 ADMINS = (
     # ('Scott', 'email@emai.com'),

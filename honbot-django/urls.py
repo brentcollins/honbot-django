@@ -6,6 +6,8 @@ admin.autodiscover()
 # import your urls from each app here, as needed
 import honbot.urls
 
+handler404 = 'honbot.views.v404'
+
 urlpatterns = patterns('',
     url('', include(honbot.urls)),
     # Uncomment the admin/doc line below to enable admin documentation:
