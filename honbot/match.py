@@ -119,14 +119,15 @@ def multimatch(data, history):
         player['wards'] = m['wards']
         player['denies'] = m['denies']
         player['herodmg'] = m['herodmg']
-        player['gpm'] = round(int(m['gold']) / matchlength, 1)
+        if int(matchlength) > 0:
+            player['gpm'] = round(int(m['gold']) / matchlength, 1)
+            player['xpm'] = round(int(m['exp']) / matchlength, 1)
+            player['apm'] = round(int(m['actions']) / matchlength, 1)
         player['cs'] = m['teamcreepkills']
-        player['xpm'] = round(int(m['exp']) / matchlength, 1)
         try:
             player['kdr'] = round(float(player['kills']) / float(player['deaths']), 1)
         except ZeroDivisionError:
             player['kdr'] = 'Inf.'
-        player['apm'] = round(int(m['actions']) / matchlength, 1)
         player['win'] = bool(int(m['wins']))
         player['smackdown'] = m['smackdown']
         player['bdmg'] = m['bdmg']
