@@ -1,7 +1,6 @@
 from django.shortcuts import render_to_response
 from django.template import Context, loader
 from django.conf import settings
-from honbot.models import Names
 from django.http import HttpResponse
 import requests
 import time
@@ -38,10 +37,6 @@ def players(request, name):
     if data is not None:
         statsdict = data
         s = playerMath(statsdict)
-        ### Save name to DB ###
-        if not Names.objects.filter(account_id=int(s['id'])):
-            newplayer = Names(account_id=int(s['id']), name=name)
-            newplayer.save()
         ### Get Match history ### api.heroesofnewerth.com/match_history/ranked/accountid/123456/?token=yourtoken
         url = '/match_history/ranked/nickname/' + name
         data = get_json(url)

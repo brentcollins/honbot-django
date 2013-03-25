@@ -50,7 +50,7 @@
                         <td data-title="Items">
                             {% for i in m.items %}
                                 {% if i %}
-                                <img src='/static/img/items/{{ i }}.jpg' width=30>
+                                    <img src='/static/img/items/{{ i }}.jpg' width=30>
                                 {% endif %}
                             {% endfor %}
                         </td>
@@ -89,16 +89,9 @@
 </div>
 <div class='container'>
     <div class="row">
-        <div class="span12 well well-small marketing">
+        <div class="span6 well well-small marketing">
             <legend>Gold Per Minute</legend>
-            <div class="row">
-                <div class="span6 stats-title">
-                    <div id="lgpm" style="min-width: 300px; height: 300px; margin: 0 auto"></div>
-                </div>
-                <div class="span6 stats-title">
-                    <div id="hgpm" style="min-width: 300px; height: 300px; margin: 0 auto"></div>
-                </div>
-            </div>
+                <div id="lgpm" style="min-width: 300px; height: 350px; margin: 0 auto"></div>
         </div>
     </div>
 </div>
@@ -197,31 +190,31 @@ $(function () {
     $(document).ready(function() {
 Highcharts.setOptions({
     colors: [{
-        linearGradient: [0, 0, 0, 300],
+        linearGradient: [0, 0, 0, 450],
         stops: [
             [0, '#ff44ab'],
             [1, '#000000']
         ]
     }, {
-        linearGradient: [0, 0, 0, 300],
+        linearGradient: [0, 0, 0, 450],
         stops: [
             [0, '#959698'],
             [1, '#000000']
         ]
     }, {
-        linearGradient: [0, 0, 0, 350],
+        linearGradient: [0, 0, 0, 450],
         stops: [
             [0, '#4cc3ee'],
             [1, '#000000']
         ]
     }, {
-        linearGradient: [0, 0, 0, 350],
+        linearGradient: [0, 0, 0, 450],
         stops: [
             [0, '#006448'],
             [1, '#000000']
         ]
     }, {
-        linearGradient: [0, 0, 0, 300],
+        linearGradient: [0, 0, 0, 450],
         stops: [
             [0, '#4F1F02'],
             [1, '#000000']
@@ -278,178 +271,148 @@ Highcharts.setOptions({
 });
 </script>
 <script>
-//legion gpm
 $(function () {
-    var chart;
-    $(document).ready(function() {
-Highcharts.setOptions({
+    Highcharts.setOptions({
     colors: [{
-        linearGradient: [0, 0, 0, 300],
+        linearGradient: [0, 0, 0, 450],
         stops: [
             [0, '#003fe2'],
             [1, '#000000']
         ]
     }, {
-        linearGradient: [0, 0, 0, 300],
+        linearGradient: [0, 0, 0, 450],
         stops: [
             [0, '#00F5C8'],
             [1, '#005949']
         ]
     }, {
-        linearGradient: [0, 0, 0, 350],
+        linearGradient: [0, 0, 0, 450],
         stops: [
             [0, '#A000C4'],
             [1, '#000000']
         ]
     }, {
-        linearGradient: [0, 0, 0, 500],
+        linearGradient: [0, 0, 0, 450],
         stops: [
             [0, '#FAF614'],
             [1, '#403F00']
         ]
     }, {
-        linearGradient: [0, 0, 0, 300],
+        linearGradient: [0, 0, 0, 450],
         stops: [
             [0, '#ff7d29'],
             [1, '#000000']
         ]
-    }]
-});
-        chart = new Highcharts.Chart({
-            chart: {
-                renderTo: 'lgpm',
-                backgroundColor: null,
-                plotBackgroundColor: null,
-                plotBorderWidth: null,
-                plotShadow: false
-            },
-            tooltip: {
-                enabled: false
-            },
-            plotOptions: {
-                pie: {
-                    allowPointSelect: true,
-                    cursor: 'pointer',
-                    animation: false,
-                    dataLabels: {
-                        enabled: true,
-                        color: '#000000',
-                        connectorColor: '#000000',
-                        formatter: function() {
-                            return '<b>'+ this.point.name +'</b>: '+ this.y + 'gpm';
-                        }
-                    }
-                }
-            },
-            title: {
-               text: ''
-            },
-            credits: {
-                enabled: false
-            },
-            exporting: { enabled: false },
-            series: [{
-                type: 'pie',
-                name: 'Gold Per Minute',
-                data: [
-                    ['{{ stats.players.0.nickname }}', {{ stats.players.0.gpm }}],
-                    ['{{ stats.players.1.nickname }}', {{ stats.players.1.gpm }}],
-                    ['{{ stats.players.2.nickname }}', {{ stats.players.2.gpm }}],
-                    ['{{ stats.players.3.nickname }}', {{ stats.players.3.gpm }}],
-                    ['{{ stats.players.4.nickname }}', {{ stats.players.4.gpm }}]
-                ]
-            }]
-        });
-    });
-    
-});
-</script>
-<script>
-//hellborne gpm
-$(function () {
-    var chart;
-    $(document).ready(function() {
-Highcharts.setOptions({
-    colors: [{
-        linearGradient: [0, 0, 0, 300],
+    }, {
+        linearGradient: [0, 0, 0, 450],
         stops: [
             [0, '#ff44ab'],
             [1, '#000000']
         ]
     }, {
-        linearGradient: [0, 0, 0, 300],
+        linearGradient: [0, 0, 0, 450],
         stops: [
             [0, '#959698'],
             [1, '#000000']
         ]
     }, {
-        linearGradient: [0, 0, 0, 350],
+        linearGradient: [0, 0, 0, 450],
         stops: [
             [0, '#4cc3ee'],
             [1, '#000000']
         ]
     }, {
-        linearGradient: [0, 0, 0, 350],
+        linearGradient: [0, 0, 0, 450],
         stops: [
             [0, '#006448'],
             [1, '#000000']
         ]
     }, {
-        linearGradient: [0, 0, 0, 300],
+        linearGradient: [0, 0, 0, 490],
         stops: [
-            [0, '#4F1F02'],
+            [0, '#4F1F00'],
             [1, '#000000']
         ]
     }]
 });
-        chart = new Highcharts.Chart({
+        $('#lgpm').highcharts({
             chart: {
-                renderTo: 'hgpm',
-                backgroundColor: null,
-                plotBackgroundColor: null,
-                plotBorderWidth: null,
-                plotShadow: false,
-            },
-            tooltip: {
-                enabled: false
-            },
-            plotOptions: {
-                pie: {
-                    allowPointSelect: true,
-                    cursor: 'pointer',
-                    animation: false,
-                    dataLabels: {
-                        enabled: true,
-                        color: '#000000',
-                        connectorColor: '#000000',
-                        formatter: function() {
-                            return '<b>'+ this.point.name +'</b>: '+ this.y + 'gpm';
-                        }
-                    }
-                }
+                type: 'column',
+                backgroundColor: null
             },
             title: {
-               text: ''
+                text: ''
+            },
+            xAxis: {
+                categories: [
+                    ''
+                ]
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    enabled: false
+                }
+            },
+            tooltip: {
+                valueSuffix: ' gpm'
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.1,
+                    borderWidth: 0,
+                    groupPadding: 0,
+                    animation: false
+                }
             },
             credits: {
                 enabled: false
             },
-            exporting: { enabled: false },
             series: [{
-                type: 'pie',
-                name: 'Gold Per Minute',
-                data: [
-                    ['{{ stats.players.5.nickname }}', {{ stats.players.5.gpm }}],
-                    ['{{ stats.players.6.nickname }}', {{ stats.players.6.gpm }}],
-                    ['{{ stats.players.7.nickname }}', {{ stats.players.7.gpm }}],
-                    ['{{ stats.players.8.nickname }}', {{ stats.players.8.gpm }}],
-                    ['{{ stats.players.9.nickname }}', {{ stats.players.9.gpm }}]
-                ]
+                name: '{{ stats.players.0.nickname }}',
+                data: [{{ stats.players.0.gpm }}]
+    
+            }, {
+                name: '{{ stats.players.1.nickname }}',
+                data: [{{ stats.players.1.gpm }}]
+    
+            }, {
+                name: '{{ stats.players.2.nickname }}',
+                data: [{{ stats.players.2.gpm }}]
+    
+            }, {
+                name: '{{ stats.players.3.nickname }}',
+                data: [{{ stats.players.3.gpm }}]
+    
+            }, {
+                name: '{{ stats.players.4.nickname }}',
+                data: [{{ stats.players.4.gpm }}]
+    
+            }, {
+                name: '{{ stats.players.5.nickname }}',
+                data: [{{ stats.players.5.gpm }}]
+    
+            }, {
+                name: '{{ stats.players.6.nickname }}',
+                data: [{{ stats.players.6.gpm }}]
+    
+            }, {
+                name: '{{ stats.players.7.nickname }}',
+                data: [{{ stats.players.7.gpm }}]
+    
+            }, {
+                name: '{{ stats.players.8.nickname }}',
+                data: [{{ stats.players.8.gpm }}]
+    
+            }, {
+                name: '{{ stats.players.9.nickname }}',
+                data: [{{ stats.players.9.gpm }}]
+    
             }]
         });
     });
     
-});
+
 </script>
 
 {% endblock main_content %}
