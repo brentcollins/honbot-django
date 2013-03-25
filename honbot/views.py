@@ -24,7 +24,7 @@ def matches(request, match_id):
         return HttpResponse(t.render(c))
     else:
         t = loader.get_template('error.html')
-        c = Context({'player_id': match_id})
+        c = Context({'id': match_id})
         return HttpResponse(t.render(c))
 
 
@@ -51,7 +51,7 @@ def players(request, name):
         return HttpResponse(t.render(c))
     else:
         t = loader.get_template('error.html')
-        c = Context({'player_id': name})
+        c = Context({'id': name})
         return HttpResponse(t.render(c))
 
 
