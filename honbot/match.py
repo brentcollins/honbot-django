@@ -4,7 +4,7 @@ import views
 import time
 
 
-directory = 'match/'
+directory = str(os.path.join(os.path.abspath(os.path.dirname(os.path.dirname(__file__))), 'match')) + '/'
 
 
 def match(match_id):
@@ -64,6 +64,7 @@ def checkfile(match_id):
     """
     check if match has been parsed before returns bool
     """
+    print directory
     if os.path.exists(directory + str(match_id) + '.json'):
         return True
     else:
