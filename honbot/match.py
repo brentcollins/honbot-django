@@ -65,7 +65,6 @@ def checkfile(match_id):
     """
     check if match has been parsed before returns bool
     """
-    print directory
     if os.path.exists(directory + str(match_id) + '.json'):
         return True
     else:
