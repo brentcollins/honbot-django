@@ -8,7 +8,7 @@ import match
 
 
 def v404(request):
-    return render_to_response('playerError.html')
+    return render_to_response('error.html')
 
 
 def home(request):
@@ -23,7 +23,7 @@ def matches(request, match_id):
         c = Context({'match_id': mid, 'stats': stats})
         return HttpResponse(t.render(c))
     else:
-        t = loader.get_template('playerError.html')
+        t = loader.get_template('error.html')
         c = Context({'player_id': match_id})
         return HttpResponse(t.render(c))
 
@@ -50,7 +50,7 @@ def players(request, name):
         c = Context({'nick': name, 'stats': s, 'mdata': history_detail})
         return HttpResponse(t.render(c))
     else:
-        t = loader.get_template('playerError.html')
+        t = loader.get_template('error.html')
         c = Context({'player_id': name})
         return HttpResponse(t.render(c))
 
