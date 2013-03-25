@@ -105,6 +105,7 @@ def playerMath(data):
     """
     This will get all the right information for the players view and store it in dict
     returns dict
+    adding TSR
     """
     stats = {}
     stats['id'] = int(data['account_id'])  # account id
@@ -136,4 +137,18 @@ def playerMath(data):
         stats['axpmin'] = int(float(data['rnk_exp']) / (float(data['rnk_secs']) / 60))  # average xp / min
         stats['agoldmin'] = int(float(data['rnk_gold']) / (float(data['rnk_secs']) / 60))  # average gold / min
         stats['aactionsmin'] = int(float(data['rnk_actions']) / (float(data['rnk_secs']) / 60))  # average actions / min
+        ### TSR CALC ###
+        # How many Kills per Death you have, scaled by 1.1/1.15 KpD - 13% of your TSR
+        stats['TSR'] = (float(stats['kills'])/(float(stats['deaths'])/1.15)*0.65)
+        # How many Assits per Death you have, scaled by 1.5/1.55 ApD - 24% of your TSR
+        stats['TSR'] += (float(stats['assists'])/(float(stats['deaths'])/1.55)*1.20)
+        # The percent of games you win, scaled by 0.55 -18% of your TSR
+        stats['TSR'] += (((float(stats['wins'])/(float(stats['wins'])+float(stats['losses'])))/0.55)*0.9)
+        # How much Gold you earn per Minute played, scaled by 190/230 - 7% of your TSR
+        stats['TSR'] += ((float(stats['agoldmin'])/230)*0.35)
+        # How much EXP you get per Minute played, scaled by 420/380
+        stats['TSR'] += (((float(stats['axpmin']))/380)*0.40)
+        # The rest of the steps
+        stats['TSR'] += ((((((float(data['rnk_denies'])/float(stats['matches']))/12))*0.70)+((((float(data['rnk_teamcreepkills'])/float(stats['matches']))/93))*0.50)+((float(data['rnk_wards'])/float(stats['matches']))/1.45*0.30))*(37.5/(float(data['rnk_secs'])/float(stats['matches'])/60)))
+        stats['TSR'] = round(stats['TSR'], 1)
     return stats

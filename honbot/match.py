@@ -1,6 +1,7 @@
 import os
 import json
 import views
+import time
 
 
 directory = 'match/'
@@ -31,7 +32,7 @@ def prepare_match(data, match_id):
     players = [None]*10
     for p in data['players']:
         players[int(data['players'][p]['position'])] = data['players'][p]
-    match['matchlength'] = data['matchlength']
+    match['matchlength'] = data['realtime']
     match['players'] = players
     return match
 
@@ -103,6 +104,7 @@ def multimatch(data, history):
     for m in data[2]:
         matchlength = round(float(m['secs']) / 60, 1)
         allmatches[m['match_id']]['matchlength'] = matchlength
+        allmatches[m['match_id']]['realtime'] = time.strftime('%M:%S', time.gmtime(int(m['secs'])))
         player = {}
         player['id'] = m['account_id']
         player['kills'] = m['herokills']
