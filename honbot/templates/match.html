@@ -10,7 +10,7 @@
         <p class="lead">
             <span>{{ match_id }}</span>
             <span class="muted">|</span>
-            <span class="muted">Length: {{ stats.matchlength }}</span>
+            <span class="muted">{{ stats.matchlength }}</span>
         </p>
     </div>
 </header>
@@ -360,7 +360,9 @@ $(function () {
                 }
             },
             tooltip: {
-                valueSuffix: ' gpm'
+                formatter: function() {
+                    return this.y;
+                }
             },
             plotOptions: {
                 column: {
