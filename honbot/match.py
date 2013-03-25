@@ -2,9 +2,10 @@ import os
 import json
 import views
 import time
+from django.conf import settings
 
 
-directory = str(os.path.join(os.path.abspath(os.path.dirname(os.path.dirname(__file__))), 'match')) + '/'
+directory = settings.MEDIA_ROOT
 
 
 def match(match_id):
