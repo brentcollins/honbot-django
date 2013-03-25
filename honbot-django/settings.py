@@ -5,7 +5,7 @@ DEBUG = True
 handler500 = 'honbot.views.errorfive'
 TEMPLATE_DEBUG = False
 ADMIN_ENABLED = False
-TOKEN = 'W28U7I8XM2NAMW6E'
+TOKEN = 'D38DW7XQ9YZGY5O9'
 
 ADMINS = (
     # ('Scott', 'email@emai.com'),
