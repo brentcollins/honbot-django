@@ -7,3 +7,5 @@ local_settings.py
 match/*.json*
 
 honbot.sqlite3
+
+honbot-django/localsettings.py
