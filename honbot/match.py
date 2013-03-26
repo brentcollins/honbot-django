@@ -1,6 +1,6 @@
-import os
+import os.path
 import json
-import views
+import api_call
 import time
 from django.conf import settings
 
@@ -16,7 +16,7 @@ def match(match_id):
         return prepare_match(load_match(match_id), match_id)
     else:
         url = '/multi_match/all/matchids/' + str(match_id)
-        data = views.get_json(url)
+        data = api_call.get_json(url)
         h = [[str(match_id), '1/1/1']]
         if data is not None:
             multimatch(data, h)
@@ -152,18 +152,3 @@ def multimatch(data, history):
         allmatches[m[0]]['date'] = m[1]
         match_save(allmatches[m[0]], m[0])
 
-
-def get_player_from_matches(history, account_id):
-    """
-    this takes a list of matches and returns that player's stats in that match
-    """
-    matches = []
-    for m in history:
-        temp = {}
-        raw = load_match(m[0])
-        if raw is not None and int(m[0]) > 60000000:
-            temp = raw['players'][str(account_id)]
-            temp['match_id'] = m[0]
-            temp['date'] = m[1]
-            matches.append(temp)
-    return matches
