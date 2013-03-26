@@ -9,7 +9,7 @@ ADMIN_ENABLED = False
 TOKEN = localsettings.get_token()
 
 ADMINS = (
-    # ('Scott', 'email@emai.com'),
+    ('Scott', 'scttcper@gmail.com'),
 )
 
 MANAGERS = ADMINS
