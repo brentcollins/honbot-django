@@ -11,9 +11,6 @@ handler404 = 'honbot.views.v404'
 
 urlpatterns = patterns('',
     url('', include(honbot.urls)),
-    url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': settings.MEDIA_ROOT,
-        }),
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     #url(r'^admin/', include(admin.site.urls)),
