@@ -12,32 +12,32 @@
 </head>
 
 <body>
-<header class="navbar navbar-inverse navbar-static-top"> <!-- alternative navbar navbar-inverse navbar-static-top -->
-    <nav class="navbar-inner">
-        <div class="container">
-            <a href="/" class="brand">HonBot</a>
-            <ul class="nav">
-                <li>
-                    <form accept-charset="UTF-8" action="/players/" class="navbar-form" id="player_search"
-                          method="post">
-                        <input class="search-query" id="player" name="player" placeholder="Player Search" type="text"
-                               value="" autofocus/>
-                    </form>
-                </li>
-            </ul>
-        </div>
-    </nav>
-</header>
-<div id="main" role="main">
-{% block main_content %}{% endblock main_content %}
-
-    <footer class='footer'>
-        <small class="muted">
-            <p>&copy; <a href="https://github.com/scttcper">Scott Cooper</a></p>
-            <p><a href="https://github.com/scttcper/honbot-django">source</a></p>
-        </small>
-    </footer>
+<div id="wrap">
+    <header class="navbar navbar-inverse navbar-static-top"> <!-- alternative navbar navbar-inverse navbar-static-top -->
+        <nav class="navbar-inner">
+            <div class="container">
+                <a href="/" class="brand">HonBot</a>
+                <ul class="nav">
+                    <li>
+                        <form accept-charset="UTF-8" action="/players/" class="navbar-form" id="player_search"
+                              method="post">
+                            <input class="search-query" id="player" name="player" placeholder="Player Search" type="text"
+                                   value="" autofocus/>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    {% block main_content %}{% endblock main_content %}
+    <div id="push"></div>
 </div>
+<footer class="footer">
+    <small class="muted">
+        <p>&copy; <a href="https://github.com/scttcper">Scott Cooper</a></p>
+        <p><a href="https://github.com/scttcper/honbot-django">source</a></p>
+    </small>
+</footer>
 </body>
 <script>
     $("#player_search").submit(function () {
