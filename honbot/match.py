@@ -145,10 +145,12 @@ def multimatch(data, history):
         items[3] = m['slot_4']
         items[4] = m['slot_5']
         items[5] = m['slot_6']
-        allmatches[m['match_id']]['players'][m['account_id']]['nickname'] = m['nickname']
-        allmatches[m['match_id']]['players'][m['account_id']]['items'] = items
+        try:
+            allmatches[m['match_id']]['players'][m['account_id']]['nickname'] = m['nickname']
+            allmatches[m['match_id']]['players'][m['account_id']]['items'] = items
+        except KeyError:
+            pass
     ### Save to file ###
     for m in history:
         allmatches[m[0]]['date'] = m[1]
         match_save(allmatches[m[0]], m[0])
-

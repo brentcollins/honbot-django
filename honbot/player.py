@@ -97,8 +97,11 @@ def get_player_from_matches(history, account_id):
         temp = {}
         raw = match.load_match(m[0])
         if raw is not None and int(m[0]) > 60000000:
-            temp = raw['players'][str(account_id)]
-            temp['match_id'] = m[0]
-            temp['date'] = m[1]
-            matches.append(temp)
+            try:
+                temp = raw['players'][str(account_id)]
+                temp['match_id'] = m[0]
+                temp['date'] = m[1]
+                matches.append(temp)
+            except KeyError:
+                pass
     return matches
