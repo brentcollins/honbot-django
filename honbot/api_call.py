@@ -10,8 +10,10 @@ def get_json(endpoint):
     url = ''.join(['http://api.heroesofnewerth.com', endpoint, '/?token=%s' % settings.TOKEN])
     raw = ''
     while True:
+        count = 0
         raw = requests.get(url)
-        if raw.status_code == 429:
+        if raw.status_code == 429 and count < 20:
+            count += 1
             sleep(0.2)
         elif raw.status_code == 200:
             break
