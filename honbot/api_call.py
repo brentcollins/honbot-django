@@ -12,7 +12,7 @@ def get_json(endpoint):
     while True:
         raw = requests.get(url)
         if raw.status_code == 429:
-            sleep(0.3)
+            sleep(0.2)
         elif raw.status_code == 200:
             break
         else:
