@@ -11,7 +11,7 @@ def get_json(endpoint):
     raw = ''
     while True:
         count = 0
-        raw = requests.get(url)
+        raw = requests.get(url, timeout=2.0)
         if raw.status_code == 429 and count < 20:
             count += 1
             sleep(0.2)
