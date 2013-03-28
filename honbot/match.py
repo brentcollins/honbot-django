@@ -48,7 +48,10 @@ def recent_matches(match_json, results):
         temp = []
         for i in data:
             temp = i.split('|')
-            temp.pop(1)
+            try:
+                temp.pop(1)
+            except:
+                pass
             if len(matches) > 0:
                 if matches[-1][0] != temp[0]:
                     matches.append(temp)
