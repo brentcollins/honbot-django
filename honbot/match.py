@@ -94,6 +94,12 @@ def load_match(match_id):
         return None
 
 
+def get_download(match_id):
+    with open(directory + str(match_id) + '.json', 'rb') as f:
+        data = json.load(f)
+    return data['replay_url']
+
+
 def multimatch(data, history):
     """
     pass this multimatch api results and the number of matches. it will parse and save the useful bits
@@ -153,6 +159,10 @@ def multimatch(data, history):
             allmatches[m['match_id']]['players'][m['account_id']]['items'] = items
         except KeyError:
             pass
+    for m in data[3]:
+        allmatches[m['match_id']]['replay_url'] = m['replay_url']
+        allmatches[m['match_id']]['version'] = m['version']
+        allmatches[m['match_id']]['mdt'] = m['mdt']
     ### Save to file ###
     for m in history:
         allmatches[m[0]]['date'] = m[1]
