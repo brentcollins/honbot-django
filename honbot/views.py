@@ -4,6 +4,7 @@ from django.http import HttpResponse
 import match
 import player
 import api_call
+import chat
 
 
 def v404(request):
@@ -14,7 +15,13 @@ def home(request):
     return render_to_response('home.html')
 
 
-def matches(request, match_id):
+def chat_view(request, match_id):
+    logs = chat.get_chat(match_id)
+    t = loader.get_template('chat.html')
+    c = Context({'logs': logs})
+    return HttpResponse(t.render(c))
+
+def match_view(request, match_id):
     mid = int(match_id)
     stats = match.match(mid)
     if stats is not None:
