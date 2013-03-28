@@ -2,6 +2,7 @@ import requests
 import zipfile
 import match
 import codecs
+import log_parse
 from os import remove, path
 from django.conf import settings
 
@@ -50,4 +51,15 @@ def parse_log(match_id):
     damn codecs... open the file already and parse it
     """
     logfile = codecs.open(directory + 'm' + match_id + '.log', encoding='utf-16-le', mode='rb').readlines()
-    return logfile
+    logfile.pop(0)
+    chatter = []
+    for line in logfile:
+            for word in line.split():
+                try:
+                    methodToCall = getattr(log_parse, word)
+                    chatter.append(methodToCall(line))
+                    break
+                except AttributeError:
+                    #print "Error: " + word + " does not have a function. Match:" + match_id
+                    break
+    return chatter
