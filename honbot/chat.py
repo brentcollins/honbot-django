@@ -57,8 +57,14 @@ def parse_chat_from_log(match_id):
                 team.append('Hellborne')
             else:
                 team.append('Legion')
+    # validation on player # because of S2
+    if chatter[-1]['player']:
+        for player in chatter:
+            player['player'] = int(player['player']) - 1
     for chat in chatter:
         if chat['target'] == "team":
+            print team
+            print chat['player']
             chat['target'] = team[int(chat['player'])]
         else:
             chat['target'] = "All"
