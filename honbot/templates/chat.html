@@ -15,7 +15,7 @@
             {% for l in logs %}
                 [{{ l.time }}]
                 [{% if l.target == "Hellborne" %}<span class="text-error">{% elif l.target == "Legion" %}<span class="text-success">{% elif l.target == "All" %}<span class="text-info">{% endif %}{{l.target}}</span>]
-                {{ l.name }}: {{ l.msg }}<br>
+                <strong>{{ l.name }}</strong>: {{ l.msg }}<br>
             {% endfor %}
         </div>
     </div>
