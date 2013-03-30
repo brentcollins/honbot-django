@@ -61,6 +61,7 @@ def parse_chat_from_log(match_id):
     if chatter[-1]['player']:
         for player in chatter:
             player['player'] = int(player['player']) - 1
+    # set player name and team name. change time from ms to datetime
     for chat in chatter:
         if chat['target'] == "team":
             print team
