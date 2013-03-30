@@ -46,6 +46,7 @@ def parse_chat_from_log(match_id):
     chatter = []
     players = []
     team = []
+    # have log_parse access data
     for line in logfile:
         word = line.split()[0]
         if word == "PLAYER_CHAT":
