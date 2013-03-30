@@ -24,8 +24,12 @@ def player_math(data):
     if stats['matches'] > 0:
         stats['hours'] = (int(data['rnk_secs']) / 60) / 60  # hours played
         stats['acs'] = round(int(data['rnk_teamcreepkills']) / float(stats['matches']), 1)  # average creep score
-        stats['kadr'] = round((float(stats['kills']) + float(stats['assists'])) / float(stats['deaths']), 2)  # k+A : d
-        stats['kdr'] = round(float(stats['kills']) / float(stats['deaths']), 2)  # kill death ratio
+        if stats['deaths'] > 0 and stats['kills'] > 0:
+            stats['kadr'] = round((float(stats['kills']) + float(stats['assists'])) / float(stats['deaths']), 2)  # k+A : d
+            stats['kdr'] = round(float(stats['kills']) / float(stats['deaths']), 2)  # kill death ratio
+        else:
+            stats['kadr'] = 0
+            stats['kdr'] = 0
         stats['winpercent'] = str(int(float(stats['wins']) / float(stats['matches']) * 100)) + '%'  # win percent
         stats['atime'] = int(data['rnk_secs']) / stats['matches'] / 60  # average time
         stats['akills'] = round(float(stats['kills']) / stats['matches'], 1)  # average kills
@@ -45,17 +49,20 @@ def player_math(data):
         # How much Gold you earn per Minute played, scaled by 190/230 - 7% of your TSR
         # How much EXP you get per Minute played, scaled by 420/380
         # The rest of the steps
-        stats['TSR'] = (float(stats['kills'])/(float(stats['deaths'])/1.15)*0.65) \
-            + (float(stats['assists'])/(float(stats['deaths'])/1.55)*1.20) \
-            + (((float(stats['wins'])/(float(stats['wins'])+float(stats['losses'])))/0.55)*0.9) \
-            + ((float(stats['agoldmin'])/230)*0.35) \
-            + (((float(stats['axpmin']))/380)*0.40) \
-            + ((((((float(data['rnk_denies'])/float(stats['matches']))/12))*0.70)
-            + ((((float(data['rnk_teamcreepkills'])/float(stats['matches']))/93))*0.50)
-            + ((float(data['rnk_wards'])/float(stats['matches']))/1.45*0.30))*(37.5/(float(data['rnk_secs'])/float(stats['matches'])/60)))
-        stats['TSR'] = round(stats['TSR'], 1)
-        if stats['TSR'] > 10:
-            stats['TSR'] = 10
+        if stats['matches'] > 5:
+            stats['TSR'] = (float(stats['kills'])/(float(stats['deaths'])/1.15)*0.65) \
+                + (float(stats['assists'])/(float(stats['deaths'])/1.55)*1.20) \
+                + (((float(stats['wins'])/(float(stats['wins'])+float(stats['losses'])))/0.55)*0.9) \
+                + ((float(stats['agoldmin'])/230)*0.35) \
+                + (((float(stats['axpmin']))/380)*0.40) \
+                + ((((((float(data['rnk_denies'])/float(stats['matches']))/12))*0.70)
+                + ((((float(data['rnk_teamcreepkills'])/float(stats['matches']))/93))*0.50)
+                + ((float(data['rnk_wards'])/float(stats['matches']))/1.45*0.30))*(37.5/(float(data['rnk_secs'])/float(stats['matches'])/60)))
+            stats['TSR'] = round(stats['TSR'], 1)
+            if stats['TSR'] > 10:
+                stats['TSR'] = 10
+        else:
+            stats['TSR'] = None
     return stats
 
 

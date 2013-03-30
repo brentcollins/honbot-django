@@ -48,7 +48,10 @@ def recent_matches(match_json, results):
         temp = []
         for i in data:
             temp = i.split('|')
-            temp.pop(1)
+            try:
+                temp.pop(1)
+            except:
+                pass
             if len(matches) > 0:
                 if matches[-1][0] != temp[0]:
                     matches.append(temp)
@@ -91,6 +94,12 @@ def load_match(match_id):
         return None
 
 
+def get_download(match_id):
+    with open(directory + str(match_id) + '.json', 'rb') as f:
+        data = json.load(f)
+    return data['replay_url']
+
+
 def multimatch(data, history):
     """
     pass this multimatch api results and the number of matches. it will parse and save the useful bits
@@ -105,7 +114,7 @@ def multimatch(data, history):
     for m in data[2]:
         matchlength = round(float(m['secs']) / 60, 1)
         allmatches[m['match_id']]['matchlength'] = matchlength
-        allmatches[m['match_id']]['realtime'] = time.strftime('%M:%S', time.gmtime(int(m['secs'])))
+        allmatches[m['match_id']]['realtime'] = time.strftime('%H:%M:%S', time.gmtime(int(m['secs'])))
         player = {}
         player['id'] = m['account_id']
         player['kills'] = m['herokills']
@@ -150,6 +159,10 @@ def multimatch(data, history):
             allmatches[m['match_id']]['players'][m['account_id']]['items'] = items
         except KeyError:
             pass
+    for m in data[3]:
+        allmatches[m['match_id']]['replay_url'] = m['replay_url']
+        allmatches[m['match_id']]['version'] = m['version']
+        allmatches[m['match_id']]['mdt'] = m['mdt']
     ### Save to file ###
     for m in history:
         allmatches[m[0]]['date'] = m[1]

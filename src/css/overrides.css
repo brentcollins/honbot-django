@@ -57,6 +57,10 @@ body {
     text-align: center;
 }
 
+.alert{
+    width: 99%;
+}
+
 .recent-match tr:hover {
     background-color: #D2DEE8 !important;
 }
