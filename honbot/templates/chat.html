@@ -1,3 +1,23 @@
-{% for l in logs %}
-    {{ l }}<br>
-{% endfor %}
+{% extends 'base.html' %}
+{% block main_content %}
+<div class="container">
+    <div class="row">
+        <div class="span12">
+            <div class="alert alert-info">
+              This feature is still under development.
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span12 well">
+            {% for l in logs %}
+                [{{ l.time }}]
+                [{% if l.target == "Hellborne" %}<span class="text-error">{% elif l.target == "Legion" %}<span class="text-success">{% elif l.target == "All" %}<span class="text-info">{% endif %}{{l.target}}</span>]
+                {{ l.name }}: {{ l.msg }}<br>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock main_content %}

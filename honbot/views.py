@@ -17,9 +17,14 @@ def home(request):
 
 def chat_view(request, match_id):
     logs = chat.get_chat(match_id)
-    t = loader.get_template('chat.html')
-    c = Context({'logs': logs})
-    return HttpResponse(t.render(c))
+    if logs is not None:
+        t = loader.get_template('chat.html')
+        c = Context({'logs': logs})
+        return HttpResponse(t.render(c))
+    else:
+        t = loader.get_template('error.html')
+        c = Context({'id': match_id})
+        return HttpResponse(t.render(c))
 
 def match_view(request, match_id):
     mid = int(match_id)

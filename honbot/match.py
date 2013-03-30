@@ -114,7 +114,7 @@ def multimatch(data, history):
     for m in data[2]:
         matchlength = round(float(m['secs']) / 60, 1)
         allmatches[m['match_id']]['matchlength'] = matchlength
-        allmatches[m['match_id']]['realtime'] = time.strftime('%M:%S', time.gmtime(int(m['secs'])))
+        allmatches[m['match_id']]['realtime'] = time.strftime('%H:%M:%S', time.gmtime(int(m['secs'])))
         player = {}
         player['id'] = m['account_id']
         player['kills'] = m['herokills']

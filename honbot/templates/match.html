@@ -178,7 +178,7 @@ Highcharts.setOptions({
             exporting: { enabled: false },
             series: [{
                 type: 'pie',
-                name: 'Gold Per Minute',
+                name: 'Damage',
                 data: [
                     ['{{ stats.players.0.nickname }}', {{ stats.players.0.herodmg }}],
                     ['{{ stats.players.1.nickname }}', {{ stats.players.1.herodmg }}],
@@ -265,7 +265,7 @@ Highcharts.setOptions({
             exporting: { enabled: false },
             series: [{
                 type: 'pie',
-                name: 'Gold Per Minute',
+                name: 'Damage',
                 data: [
                     ['{{ stats.players.5.nickname }}', {{ stats.players.5.herodmg }}],
                     ['{{ stats.players.6.nickname }}', {{ stats.players.6.herodmg }}],
@@ -364,6 +364,8 @@ $(function () {
                 }
             },
             tooltip: {
+                followPointer: true,
+                hideDelay: 50,
                 formatter: function() {
                     return this.y;
                 }
