@@ -63,14 +63,12 @@ def parse_chat_from_log(match_id):
             else:
                 team.append('Legion')
     # validation on player # because of S2
-    if chatter[-1]['player']:
+    if chatter[-1]['player'] == 10:
         for player in chatter:
             player['player'] = int(player['player']) - 1
     # set player name and team name. change time from ms to datetime
     for chat in chatter:
         if chat['target'] == "team":
-            print team
-            print chat['player']
             chat['target'] = team[int(chat['player'])]
         else:
             chat['target'] = "All"
