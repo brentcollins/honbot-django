@@ -26,6 +26,7 @@ def chat_view(request, match_id):
         c = Context({'id': match_id})
         return HttpResponse(t.render(c))
 
+
 def match_view(request, match_id):
     mid = int(match_id)
     stats = match.match(mid)

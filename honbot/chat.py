@@ -23,10 +23,14 @@ def get_chat(match_id):
             try:
                 r = requests.get('http://replaydl.heroesofnewerth.com/replay_dl.php?file=&match_id=' + match_id, timeout=2)
                 url = r.url[:-9] + 'zip'
+                if r.status_code == 404:
+                    return None
             except:
                 return None
         # download file
         r = requests.get(url)
+        if r.status_code == 404:
+            return None
         with open(directory + str(match_id)+".zip", "wb") as code:
             code.write(r.content)
         z = zipfile.ZipFile(directory + str(match_id) + '.zip')
