@@ -38,7 +38,9 @@ def get_chat(match_id):
         z.close()
         # cleanup zip
         remove(directory + str(match_id) + '.zip')
-    return parse_chat_from_log(match_id)
+        return parse_chat_from_log(match_id)
+    else:
+        return None
 
 
 def parse_chat_from_log(match_id):
