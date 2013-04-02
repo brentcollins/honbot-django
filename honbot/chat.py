@@ -16,17 +16,8 @@ def get_chat(match_id):
     """
     # get proper url and change to .zip use match first or backup plan with php (slow)
     if checkfile(match_id):
-        if checkfile(match_id):
-            url = get_download(match_id)
-            url = url[:-9] + 'zip'
-        else:
-            try:
-                r = requests.get('http://replaydl.heroesofnewerth.com/replay_dl.php?file=&match_id=' + match_id, timeout=2)
-                url = r.url[:-9] + 'zip'
-                if r.status_code == 404:
-                    return None
-            except:
-                return None
+        url = get_download(match_id)
+        url = url[:-9] + 'zip'
         # download file
         r = requests.get(url)
         if r.status_code == 404:
@@ -40,7 +31,25 @@ def get_chat(match_id):
         remove(directory + str(match_id) + '.zip')
         return parse_chat_from_log(match_id)
     else:
-        return None
+        # this method is janky. hence all the 404 checks to back out quickly if things go south
+        try:
+            r = requests.get('http://replaydl.heroesofnewerth.com/replay_dl.php?file=&match_id=' + match_id, timeout=2)
+            if r.status_code == 404:
+                return None
+            url = r.url[:-9] + 'zip'
+            r = requests.get(url)
+            if r.status_code == 404:
+                return None
+            with open(directory + str(match_id)+".zip", "wb") as code:
+                code.write(r.content)
+            z = zipfile.ZipFile(directory + str(match_id) + '.zip')
+            z.extract(z.namelist()[0], directory)
+            z.close()
+            # cleanup zip
+            remove(directory + str(match_id) + '.zip')
+            return parse_chat_from_log(match_id)
+        except:
+            return None
 
 
 def parse_chat_from_log(match_id):
