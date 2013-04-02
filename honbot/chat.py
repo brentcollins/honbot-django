@@ -3,7 +3,7 @@ import zipfile
 import codecs
 from match import checkfile, get_download
 from log_parse import PLAYER_CHAT, PLAYER_CONNECT
-from os import remove
+from os import remove, path
 from django.conf import settings
 from time import strftime, gmtime
 
@@ -15,6 +15,8 @@ def get_chat(match_id):
     handles the initial download/check of the .log file
     """
     # get proper url and change to .zip use match first or backup plan with php (slow)
+    if path.exists(directory + 'm' + str(match_id) + '.log'):
+        return parse_chat_from_log(match_id)
     if checkfile(match_id):
         url = get_download(match_id)
         url = url[:-9] + 'zip'
