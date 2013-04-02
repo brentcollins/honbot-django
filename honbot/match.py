@@ -163,9 +163,12 @@ def multimatch(data, history):
         except KeyError:
             pass
     for m in data[3]:
-        allmatches[m['match_id']]['replay_url'] = m['replay_url']
-        allmatches[m['match_id']]['version'] = m['version']
-        allmatches[m['match_id']]['mdt'] = m['mdt']
+        try:
+            allmatches[m['match_id']]['replay_url'] = m['replay_url']
+            allmatches[m['match_id']]['version'] = m['version']
+            allmatches[m['match_id']]['mdt'] = m['mdt']
+        except:
+            pass
     ### Save to file ###
     for m in history:
         allmatches[m[0]]['date'] = m[1]
