@@ -32,7 +32,7 @@ def match_view(request, match_id):
     stats = match.match(mid)
     if stats is not None:
         t = loader.get_template('match.html')
-        c = Context({'match_id': mid, 'stats': stats})
+        c = Context({'match_id': mid, 'stats': stats })
         return HttpResponse(t.render(c))
     else:
         t = loader.get_template('error.html')

@@ -3,20 +3,11 @@ import zipfile
 import codecs
 from match import checkfile, get_download
 from log_parse import PLAYER_CHAT, PLAYER_CONNECT
-from os import remove, path
+from os import remove
 from django.conf import settings
 from time import strftime, gmtime
 
 directory = settings.MEDIA_ROOT
-
-
-def check_logs(match_id):
-    if path.exists(directory + 'm' + str(match_id) + '.log'):
-        return True
-    elif requests.get('http://replaydl.heroesofnewerth.com/replay_dl.php?file=&match_id=' + match_id, timeout=2).status_code != 404:
-        return True
-    else:
-        return False
 
 
 def get_chat(match_id):
