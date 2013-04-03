@@ -1,19 +1,26 @@
 {% extends 'base.html' %}
+
+{% block page_title %}HonBot | HoN player stats, matches, chat logs {% endblock %}
+
 {% block main_content %}
 <div class="jumbotron masthead">
     <div class="container">
         <h1 class="dropshadow">HonBot</h1>
-        <p class="hidden-phone">Stats. Graphs.</p>
+        <p class="hidden-phone">Stats, Chat, Graphs for Heroes of Newerth</p>
     </div>
 </div>
 <br>
 <div class="container">
     <div class="row">
-        <div class="span4 well marketing">
-            <legend>Check Popular Players</legend>
-            <ul>
-                <li>Moonmeander`</li>
+        <div class="span4 marketing stats-title well">
+            <h2>Popular Players</h2>
+            <hr class="soften">
+            <ul class="unstyled">
+                <li><a href="/player/moonmeander%60/">Moonmeander`</a></li>
+                <li><a href="/player/Tralfamadore/">Tralfamadore</a></li>
             </ul>
+        </div>
+        <div class="span4 marketing stats-title well">
         </div>
     </div>
 </div>
