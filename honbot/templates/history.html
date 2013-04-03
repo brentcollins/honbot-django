@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block page_title %}{{ nick }} History | HonBot {% endblock %}
+
+{% block main_content %}
+<header class="jumbotron subhead" id="overview">
+    <div class='container'>
+        <h1>{{ nick }}</h1>
+        <p class="lead">
+            <span class="text-info">MMR: {{ stats.mmr }}</span> <span class="muted">|</span>
+            TSR: {{ stats.TSR }} <span class="muted">|</span>
+            <span class="text-success">W: {{ stats.wins }}</span> <span class="muted">|</span>
+            <span class="text-error">L: {{ stats.losses }}</span> <span class="muted">|</span>
+            <span class="muted">{{ stats.winpercent }}</span>
+        </p>
+    </div>
+</header>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="span6 offset3 well well-small marketing stats-title">
+            <h4>Recent Matches</h4>
+            <table class="table table-condensed recent-match">
+                {% for m in mdata %}
+                    <tr href="/match/{{ m.match_id }}/">
+                        <td>
+                            {% if m.win %}
+                            <img src='/static/img/win.jpg'>
+                            {% else %}
+                            <img src='/static/img/loss.jpg'>
+                            {% endif %}
+                            <img src='/static/img/heroes/{{ m.hero }}/icon_30.jpg' width=30>
+                        </td>
+                        <td>{{ m.kills }} / {{ m.deaths }} / {{ m.assists }}</td>
+                        <td>{{ m.date }}</td>
+                        <td><a href="/match/{{ m.match_id }}/">{{ m.match_id }}</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+$(document).ready(function(){
+    $('table tr').click(function(){
+        window.location = $(this).attr('href');
+        return false;
+    });
+});
+</script>
+{% endblock main_content %}
