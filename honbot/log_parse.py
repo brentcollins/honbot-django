@@ -1,3 +1,5 @@
+# I have decided to only use this for the chat logging. I will have another log_parse similar file for advanced stats
+
 def PLAYER_CHAT(line):
     """
     returns dict of chat line, two types of chat, one before start and after

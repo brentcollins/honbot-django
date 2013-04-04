@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block page_title %}Advanced Stats | HonBot {% endblock %}
+
+{% block main_content %}
+Match: {{ data.match_id }} <br>
+Date: {{ data.date }} <br>
+Time: {{ data.time }} <br>
+Server: {{ data.server }} <br>
+Version: {{ data.version }} <br>
+Map: {{ data.map }} <br>
+Mode: {{ data.mode }} <br>
+Players: {{ data.players }} <br>
+Spectators: {{ data.spectators }} <br>
+
+{% endblock main_content %}

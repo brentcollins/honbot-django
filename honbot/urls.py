@@ -10,5 +10,6 @@ urlpatterns = patterns('',
     url(r'^history/(?P<name>.*)/$', 'honbot.views.history'),
     url(r'^match/(?P<match_id>\d+)/$', 'honbot.views.match_view'),
     url(r'^chat/(?P<match_id>\d+)/$', 'honbot.views.chat_view'),
+    url(r'^advanced/(?P<match_id>\d+)/$', 'honbot.views.adv'),
     (r'^robots\.txt$', TemplateView.as_view(template_name="robots.txt")),
 )

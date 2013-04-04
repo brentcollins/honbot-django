@@ -5,6 +5,7 @@ import match
 import player
 import api_call
 import chat
+import advanced
 
 
 def v404(request):
@@ -61,6 +62,18 @@ def history(request, name):
     else:
         t = loader.get_template('error.html')
         c = Context({'id': name})
+        return HttpResponse(t.render(c))
+
+
+def adv(request, match_id):
+    data = advanced.main(match_id)
+    if data is not None:
+        t = loader.get_template('advanced.html')
+        c = Context({'data': data, 'match_id': match_id})
+        return HttpResponse(t.render(c))
+    else:
+        t = loader.get_template('error.html')
+        c = Context({'id': match_id})
         return HttpResponse(t.render(c))
 
 
