@@ -1,3 +1,4 @@
+import re
 
 
 class Magic:
@@ -11,6 +12,12 @@ class Magic:
         self.mode = ''
         self.players = []
         self.spectators = []
+        self.team = []
+        self.id = []
+        self.psr = []
+        self.hero = [None] * 10
+        self.items = [[] for i in range(10)]
+        self.ability_upgrade = [[] for i in range(10)]
 
     def INFO_DATE(self, line):
         """
@@ -58,7 +65,8 @@ class Magic:
         PLAYER_CONNECT time:1617600 player:13 name:"[bMcE]Smexystyle`" id:7399320 psr:-1.0000
         """
         l = line.split()
-        if len(l) == 5:
+        psr = int(float(l[-1].split(':')[1]))
+        if psr != -1:
             name = l[2].split(':')[1][1:-1]
             for letter in name:
                 if letter == '[':
@@ -66,6 +74,8 @@ class Magic:
                 else:
                     break
             self.players.append(name)
+            self.psr.append(psr)
+            self.id.append(int(l[-2].split(':')[1]))
         else:
             name = l[3].split(':')[1][1:-1]
             for letter in name:
@@ -79,3 +89,44 @@ class Magic:
         """
         PLAYER_TEAM_CHANGE player:0 team:1
         """
+        self.team.append(int(line[-3]))
+
+    def PLAYER_SELECT(self, line):
+        """
+        PLAYER_SELECT player:6 hero:"Hero_Krixi"
+        """
+        l = line.split()
+        self.hero[int(l[1].split(':')[1])] = l[2].split('"')[1]
+
+    def PLAYER_RANDOM(self, line):
+        """
+        PLAYER_RANDOM player:5 hero:"Hero_Engineer"
+        """
+        l = line.split()
+        self.hero[int(l[1].split(':')[1])] = l[2].split('"')[1]
+
+    def ITEM_PURCHASE(self, line):
+        """
+        ITEM_PURCHASE time:0 x:13740 y:13363 z:110 player:3 team:2 item:"Item_LoggersHatchet" cost:225
+        """
+        l = line.split()
+        item = {}
+        item['item'] = l[7].split('"')[1]
+        item['price'] = int(l[8].split(':')[1])
+        item['time'] = int(l[1].split(':')[1])
+        self.items[int(l[5].split(':')[1])].append(item)
+
+    def ABILITY_UPGRADE(self, line):
+        """
+        ABILITY_UPGRADE time:0 x:1662 y:995 z:101 player:1 team:1 name:"Ability_Empath1" level:1 slot:0
+        """
+        l = line.split()
+        a = {}
+        a['time'] = int(l[1].split(':')[1])
+        ability = l[7].split('"')[1]
+        if ability != 'Ability_AttributeBoost':
+            ability = int(re.sub("\D", "", ability))
+        else:
+            ability = 5
+        a['ability'] = ability
+        self.ability_upgrade[int(l[5].split(':')[1])].append(a)
