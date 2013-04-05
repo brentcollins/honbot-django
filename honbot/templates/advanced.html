@@ -6,6 +6,19 @@
 <div class="container">
     <div class="row">
         <div class="span12 well">
+            <legend>Builds</legend>
+            {% for player in data.ability_upgrade %}
+                {% for move in player %}
+                    {{ forloop.counter }}
+                    {{ move }}
+                {% endfor %} <br>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span12 well">
             Match: {{ data.match_id }} <br>
             Date: {{ data.date }} <br>
             Time: {{ data.time }} <br>

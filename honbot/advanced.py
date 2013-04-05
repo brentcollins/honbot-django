@@ -66,4 +66,5 @@ def parse(match_id):
             except AttributeError:
                 print "Error: " + word + " does not have a function. Match:" + match_id
                 break
+    data.finish()
     return data

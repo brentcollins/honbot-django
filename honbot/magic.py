@@ -19,6 +19,47 @@ class Magic:
         self.items = [[] for i in range(10)]
         self.ability_upgrade = [[] for i in range(10)]
 
+    def finish(self):
+        """
+        this will do my required math and sorting
+        """
+        myorder = [None] * 10
+        newplayers = [None] * 10
+        newitems = [None] * 10
+        newteam = [None] * 10
+        newability_upgrade = [None] * 10
+        team1 = []
+        name1 = []
+        name2 = []
+        team2 = []
+        for i, p in enumerate(self.psr):
+            if self.team[i] == 1:
+                team1.append(p)
+                name1.append(self.players[i])
+            else:
+                team2.append(p)
+                name2.append(self.players[i])
+        count = 0
+        while count != 5:
+            index = self.players.index(name1[team1.index(max(team1))])
+            myorder[index] = count
+            count += 1
+            team1[team1.index(max(team1))] = 0
+        while count != 10:
+            index = self.players.index(name2[team2.index(max(team2))])
+            myorder[index] = count
+            count += 1
+            team2[team2.index(max(team2))] = 0
+        for i, order in enumerate(myorder):
+            newplayers[order] = self.players[i]
+            newitems[order] = self.items[i]
+            newteam[order] = self.team[i]
+            newability_upgrade[order] = self.ability_upgrade[i]
+        self.players = newplayers
+        self.items = newitems
+        self.ability_upgrade = newability_upgrade
+        self.team = newteam
+
     def INFO_DATE(self, line):
         """
         [u'\ufeffINFO_DATE', u'date:"2013/30/03"', u'time:"17:14:52"']
