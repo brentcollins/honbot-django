@@ -151,7 +151,7 @@ class Magic:
         PLAYER_RANDOM player:5 hero:"Hero_Engineer"
         """
         l = line.split()
-        self.hero[int(l[1].split(':')[1])] = l[2].split('"')[1]
+        self.hero[int(l[1].split(':')[1])] = hero(l[2].split('"')[1])
 
     def ITEM_PURCHASE(self, line):
         """
