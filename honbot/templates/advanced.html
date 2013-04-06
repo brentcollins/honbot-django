@@ -5,13 +5,212 @@
 {% block main_content %}
 <div class="container">
     <div class="row">
-        <div class="span12 well">
-            <legend>Builds</legend>
-            {% for player in data.ability_upgrade %}
-                {% for move in player %}
-                    {{ forloop.counter }}
-                    {{ move }}
-                {% endfor %} <br>
+        <div class="span12 stats-title">
+            <h1>Builds</h1>
+            <hr class="soften">
+         </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span2 offset1">
+            <div class="clearfix content-heading marketing">
+                <img class="pull-left" src='/static/img/p/0.jpg'>
+                <img class="pull-left" src='/static/img/heroes/{{ data.hero.0 }}/icon_30.jpg'>
+                <h4 class="pull-left">{{ data.players.0 }}</h4>
+            </div>
+            <img style="width: 30px" class="pull-left" src="/static/img/heroes/{{ data.hero.0 }}/ability1_128.jpg">
+            <img style="width: 30px" class="pull-left" src="/static/img/heroes/{{ data.hero.0 }}/ability2_128.jpg">
+            <img style="width: 30px" class="pull-left" src="/static/img/heroes/{{ data.hero.0 }}/ability3_128.jpg">
+            <img style="width: 30px" class="pull-left" src="/static/img/heroes/{{ data.hero.0 }}/ability4_128.jpg">
+            <img style="width: 30px" src="/static/img/heroes/boost_50.gif"><br>
+            {% for move in data.ability_upgrade.1 %}
+                {% if move.ability == 1 %}
+                    <img style="width: 30px" class="pull-left" src="/static/img/heroes/{{ data.hero.0 }}/ability1_128.jpg">
+                {% else %}
+                    <img class="pull-left" src="/static/img/heroes/nomove.png">
+                {% endif %}
+                {% if move.ability == 2 %}
+                    <img style="width: 30px" class="pull-left" src="/static/img/heroes/{{ data.hero.0 }}/ability2_128.jpg">
+                {% else %}
+                    <img class="pull-left" src="/static/img/heroes/nomove.png">
+                {% endif %}
+                {% if move.ability == 3 %}
+                    <img style="width: 30px" class="pull-left" src="/static/img/heroes/{{ data.hero.0 }}/ability3_128.jpg">
+                {% else %}
+                    <img class="pull-left" src="/static/img/heroes/nomove.png">
+                {% endif %}
+                {% if move.ability == 4 %}
+                    <img style="width: 30px" class="pull-left" src="/static/img/heroes/{{ data.hero.0 }}/ability4_128.jpg">
+                {% else %}
+                    <img class="pull-left" src="/static/img/heroes/nomove.png">
+                {% endif %}
+                {% if move.ability == 5 %}
+                    <img style="width: 30px" class="pull-left" src="/static/img/heroes/boost_50.gif">
+                {% else %}
+                    <img src="/static/img/heroes/nomove.png">
+                {% endif %}
+                {{ forloop.counter }}<br>
+            {% endfor %}
+        </div>
+        <div class="span2">
+            <div class="clearfix content-heading marketing">
+                <img class="pull-left" src='/static/img/p/1.jpg'>
+                <img class="pull-left" src='/static/img/heroes/{{ data.hero.1 }}/icon_30.jpg'>
+                <h4 class="pull-left">{{ data.players.1 }}</h4>
+            </div>
+            <img style="width: 30px" class="pull-left" src="/static/img/heroes/{{ data.hero.1 }}/ability1_128.jpg">
+            <img style="width: 30px" class="pull-left" src="/static/img/heroes/{{ data.hero.1 }}/ability2_128.jpg">
+            <img style="width: 30px" class="pull-left" src="/static/img/heroes/{{ data.hero.1 }}/ability3_128.jpg">
+            <img style="width: 30px" class="pull-left" src="/static/img/heroes/{{ data.hero.1 }}/ability4_128.jpg">
+            <img style="width: 30px" src="/static/img/heroes/boost_50.gif"><br>
+            {% for move in data.ability_upgrade.1 %}
+                {% if move.ability == 1 %}
+                    <img style="width: 30px" class="pull-left" src="/static/img/heroes/{{ data.hero.1 }}/ability1_128.jpg">
+                {% else %}
+                    <img class="pull-left" src="/static/img/heroes/nomove.png">
+                {% endif %}
+                {% if move.ability == 2 %}
+                    <img style="width: 30px" class="pull-left" src="/static/img/heroes/{{ data.hero.1 }}/ability2_128.jpg">
+                {% else %}
+                    <img class="pull-left" src="/static/img/heroes/nomove.png">
+                {% endif %}
+                {% if move.ability == 3 %}
+                    <img style="width: 30px" class="pull-left" src="/static/img/heroes/{{ data.hero.1 }}/ability3_128.jpg">
+                {% else %}
+                    <img class="pull-left" src="/static/img/heroes/nomove.png">
+                {% endif %}
+                {% if move.ability == 4 %}
+                    <img style="width: 30px" class="pull-left" src="/static/img/heroes/{{ data.hero.1 }}/ability4_128.jpg">
+                {% else %}
+                    <img class="pull-left" src="/static/img/heroes/nomove.png">
+                {% endif %}
+                {% if move.ability == 5 %}
+                    <img style="width: 30px" class="pull-left" src="/static/img/heroes/boost_50.gif">
+                {% else %}
+                    <img src="/static/img/heroes/nomove.png">
+                {% endif %}
+                {{ forloop.counter }}<br>
+            {% endfor %}
+        </div>
+        <div class="span2">
+            <div class="clearfix content-heading marketing">
+                <img class="pull-left" src='/static/img/p/2.jpg'>
+                <img class="pull-left" src='/static/img/heroes/{{ data.hero.2 }}/icon_30.jpg'>
+                <h4 class="pull-left">{{ data.players.2 }}</h4>
+            </div>
+            <img style="width: 30px" class="pull-left" src="/static/img/heroes/{{ data.hero.2 }}/ability1_128.jpg">
+            <img style="width: 30px" class="pull-left" src="/static/img/heroes/{{ data.hero.2 }}/ability2_128.jpg">
+            <img style="width: 30px" class="pull-left" src="/static/img/heroes/{{ data.hero.2 }}/ability3_128.jpg">
+            <img style="width: 30px" class="pull-left" src="/static/img/heroes/{{ data.hero.2 }}/ability4_128.jpg">
+            <img style="width: 30px" src="/static/img/heroes/boost_50.gif"><br>
+            {% for move in data.ability_upgrade.2 %}
+                {% if move.ability == 1 %}
+                    <img style="width: 30px" class="pull-left" src="/static/img/heroes/{{ data.hero.2 }}/ability1_128.jpg">
+                {% else %}
+                    <img class="pull-left" src="/static/img/heroes/nomove.png">
+                {% endif %}
+                {% if move.ability == 2 %}
+                    <img style="width: 30px" class="pull-left" src="/static/img/heroes/{{ data.hero.2 }}/ability2_128.jpg">
+                {% else %}
+                    <img class="pull-left" src="/static/img/heroes/nomove.png">
+                {% endif %}
+                {% if move.ability == 3 %}
+                    <img style="width: 30px" class="pull-left" src="/static/img/heroes/{{ data.hero.2 }}/ability3_128.jpg">
+                {% else %}
+                    <img class="pull-left" src="/static/img/heroes/nomove.png">
+                {% endif %}
+                {% if move.ability == 4 %}
+                    <img style="width: 30px" class="pull-left" src="/static/img/heroes/{{ data.hero.2 }}/ability4_128.jpg">
+                {% else %}
+                    <img class="pull-left" src="/static/img/heroes/nomove.png">
+                {% endif %}
+                {% if move.ability == 5 %}
+                    <img style="width: 30px" class="pull-left" src="/static/img/heroes/boost_50.gif">
+                {% else %}
+                    <img src="/static/img/heroes/nomove.png">
+                {% endif %}
+                {{ forloop.counter }}<br>
+            {% endfor %}
+        </div>
+         <div class="span2">
+            <div class="clearfix content-heading marketing">
+                <img class="pull-left" src='/static/img/p/3.jpg'>
+                <img class="pull-left" src='/static/img/heroes/{{ data.hero.3 }}/icon_30.jpg'>
+                <h4 class="pull-left">{{ data.players.3 }}</h4>
+            </div>
+            <img style="width: 30px" class="pull-left" src="/static/img/heroes/{{ data.hero.3 }}/ability1_128.jpg">
+            <img style="width: 30px" class="pull-left" src="/static/img/heroes/{{ data.hero.3 }}/ability2_128.jpg">
+            <img style="width: 30px" class="pull-left" src="/static/img/heroes/{{ data.hero.3 }}/ability3_128.jpg">
+            <img style="width: 30px" class="pull-left" src="/static/img/heroes/{{ data.hero.3 }}/ability4_128.jpg">
+            <img style="width: 30px" src="/static/img/heroes/boost_50.gif"><br>
+            {% for move in data.ability_upgrade.2 %}
+                {% if move.ability == 1 %}
+                    <img style="width: 30px" class="pull-left" src="/static/img/heroes/{{ data.hero.3 }}/ability1_128.jpg">
+                {% else %}
+                    <img class="pull-left" src="/static/img/heroes/nomove.png">
+                {% endif %}
+                {% if move.ability == 2 %}
+                    <img style="width: 30px" class="pull-left" src="/static/img/heroes/{{ data.hero.3 }}/ability2_128.jpg">
+                {% else %}
+                    <img class="pull-left" src="/static/img/heroes/nomove.png">
+                {% endif %}
+                {% if move.ability == 3 %}
+                    <img style="width: 30px" class="pull-left" src="/static/img/heroes/{{ data.hero.3 }}/ability3_128.jpg">
+                {% else %}
+                    <img class="pull-left" src="/static/img/heroes/nomove.png">
+                {% endif %}
+                {% if move.ability == 4 %}
+                    <img style="width: 30px" class="pull-left" src="/static/img/heroes/{{ data.hero.3 }}/ability4_128.jpg">
+                {% else %}
+                    <img class="pull-left" src="/static/img/heroes/nomove.png">
+                {% endif %}
+                {% if move.ability == 5 %}
+                    <img style="width: 30px" class="pull-left" src="/static/img/heroes/boost_50.gif">
+                {% else %}
+                    <img src="/static/img/heroes/nomove.png">
+                {% endif %}
+                {{ forloop.counter }}<br>
+            {% endfor %}
+        </div>
+         <div class="span2">
+            <div class="clearfix content-heading marketing">
+                <img class="pull-left" src='/static/img/p/4.jpg'>
+                <img class="pull-left" src='/static/img/heroes/{{ data.hero.4 }}/icon_30.jpg'>
+                <h4 class="pull-left">{{ data.players.4 }}</h4>
+            </div>
+            <img style="width: 30px" class="pull-left" src="/static/img/heroes/{{ data.hero.4 }}/ability1_128.jpg">
+            <img style="width: 30px" class="pull-left" src="/static/img/heroes/{{ data.hero.4 }}/ability2_128.jpg">
+            <img style="width: 30px" class="pull-left" src="/static/img/heroes/{{ data.hero.4 }}/ability3_128.jpg">
+            <img style="width: 30px" class="pull-left" src="/static/img/heroes/{{ data.hero.4 }}/ability4_128.jpg">
+            <img style="width: 30px" src="/static/img/heroes/boost_50.gif"><br>
+            {% for move in data.ability_upgrade.2 %}
+                {% if move.ability == 1 %}
+                    <img style="width: 30px" class="pull-left" src="/static/img/heroes/{{ data.hero.4 }}/ability1_128.jpg">
+                {% else %}
+                    <img class="pull-left" src="/static/img/heroes/nomove.png">
+                {% endif %}
+                {% if move.ability == 2 %}
+                    <img style="width: 30px" class="pull-left" src="/static/img/heroes/{{ data.hero.4 }}/ability2_128.jpg">
+                {% else %}
+                    <img class="pull-left" src="/static/img/heroes/nomove.png">
+                {% endif %}
+                {% if move.ability == 3 %}
+                    <img style="width: 30px" class="pull-left" src="/static/img/heroes/{{ data.hero.4 }}/ability3_128.jpg">
+                {% else %}
+                    <img class="pull-left" src="/static/img/heroes/nomove.png">
+                {% endif %}
+                {% if move.ability == 4 %}
+                    <img style="width: 30px" class="pull-left" src="/static/img/heroes/{{ data.hero.4 }}/ability4_128.jpg">
+                {% else %}
+                    <img class="pull-left" src="/static/img/heroes/nomove.png">
+                {% endif %}
+                {% if move.ability == 5 %}
+                    <img style="width: 30px" class="pull-left" src="/static/img/heroes/boost_50.gif">
+                {% else %}
+                    <img src="/static/img/heroes/nomove.png">
+                {% endif %}
+                {{ forloop.counter }}<br>
             {% endfor %}
         </div>
     </div>

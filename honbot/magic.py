@@ -1,4 +1,5 @@
 import re
+from hero_id import hero
 
 
 class Magic:
@@ -28,6 +29,8 @@ class Magic:
         newitems = [None] * 10
         newteam = [None] * 10
         newability_upgrade = [None] * 10
+        newhero = [None] * 10
+        newid = [None] * 10
         team1 = []
         name1 = []
         name2 = []
@@ -54,11 +57,15 @@ class Magic:
             newplayers[order] = self.players[i]
             newitems[order] = self.items[i]
             newteam[order] = self.team[i]
+            newhero[order] = self.hero[i]
+            newid[order] = self.id[i]
             newability_upgrade[order] = self.ability_upgrade[i]
         self.players = newplayers
         self.items = newitems
         self.ability_upgrade = newability_upgrade
         self.team = newteam
+        self.hero = newhero
+        self.id = newid
 
     def INFO_DATE(self, line):
         """
@@ -137,7 +144,7 @@ class Magic:
         PLAYER_SELECT player:6 hero:"Hero_Krixi"
         """
         l = line.split()
-        self.hero[int(l[1].split(':')[1])] = l[2].split('"')[1]
+        self.hero[int(l[1].split(':')[1])] = hero(l[2].split('"')[1])
 
     def PLAYER_RANDOM(self, line):
         """
