@@ -6,6 +6,20 @@
 <div class="container">
     <div class="row">
         <div class="span12 well">
+            <h1 class="stats-title">Average Actions Per Minute</h1>
+            <hr class="soften">
+            <div class="row">
+                <div class="span12 stats-title">
+                    <div id="lapm" style=" height: 400px; margin: 0 auto"></div>
+                    <div id="hapm" style=" height: 400px; margin: 0 auto"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span12 well">
             <h1 class="stats-title">Skill Build</h1>
             <hr class="soften">
             <div class="row">
@@ -406,6 +420,81 @@
         </div>
     </div>
 </div>
+<script src="/static/js/highcharts.js"></script>
+<script>
+$(function () {
+    $('#lapm').highcharts({
+        chart: {
+            type: 'spline',
+            backgroundColor: null,
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+        },
+        title: {
+            text: ''
+        },
+        tooltip: {
+            crosshairs: true,
+            shared: true
+        },
+        colors: ['#003fe2', '#00c19e', '#5d0072', '#FAF614', '#ff7d29'],
+        series: [{
+            name: '{{ data.players.0 }}',
+            data: [{% for a in data.apm.0 %}{{ a }},{% endfor %}]
+        }, {
+            name: '{{ data.players.1 }}',
+            data: [{% for a in data.apm.1 %}{{ a }},{% endfor %}]
+        }, {
+            name: '{{ data.players.2 }}',
+            data: [{% for a in data.apm.2 %}{{ a }},{% endfor %}]
+        }, {
+            name: '{{ data.players.3 }}',
+            data: [{% for a in data.apm.3 %}{{ a }},{% endfor %}]
+        }, {
+            name: '{{ data.players.4 }}',
+            data: [{% for a in data.apm.4 %}{{ a }},{% endfor %}]
+        }]
+    });
+});
+</script>
+<script>
+$(function () {
+    $('#hapm').highcharts({
+        chart: {
+            type: 'spline',
+            backgroundColor: null,
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+        },
+        title: {
+            text: ''
+        },
+        tooltip: {
+            crosshairs: true,
+            shared: true
+        },
+        colors: ['#ff44ab', '#959698', '#4cc3ee', '#006448', '#562507'],
+        series: [{
+            name: '{{ data.players.5 }}',
+            data: [{% for a in data.apm.5 %}{{ a }},{% endfor %}]
+        }, {
+            name: '{{ data.players.6 }}',
+            data: [{% for a in data.apm.6 %}{{ a }},{% endfor %}]
+        }, {
+            name: '{{ data.players.7 }}',
+            data: [{% for a in data.apm.7 %}{{ a }},{% endfor %}]
+        }, {
+            name: '{{ data.players.8 }}',
+            data: [{% for a in data.apm.8 %}{{ a }},{% endfor %}]
+        }, {
+            name: '{{ data.players.9 }}',
+            data: [{% for a in data.apm.9 %}{{ a }},{% endfor %}]
+        }]
+    });
+});
+</script>
 <div class="container">
     <div class="row">
         <div class="span12 well">
