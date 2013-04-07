@@ -22,6 +22,8 @@ class Magic:
         self.apm = [[] for i in range(10)]
         self.add = [0] * 10
         self.chunk = 1
+        self.hapm = []
+        self.lapm = []
 
     def finish(self):
         """
@@ -35,6 +37,7 @@ class Magic:
         newhero = [None] * 10
         newid = [None] * 10
         newapm = [None] * 10
+        newpsr = [None] * 10
         team1 = []
         name1 = []
         name2 = []
@@ -65,6 +68,7 @@ class Magic:
             newid[order] = self.id[i]
             newability_upgrade[order] = self.ability_upgrade[i]
             newapm[order] = self.apm[i]
+            newpsr[order] = self.psr[i]
         self.players = newplayers
         self.items = newitems
         self.ability_upgrade = newability_upgrade
@@ -72,6 +76,7 @@ class Magic:
         self.hero = newhero
         self.id = newid
         self.apm = newapm
+        self.psr = newpsr
 
     def INFO_DATE(self, line):
         """
@@ -191,8 +196,7 @@ class Magic:
         PLAYER_ACTIONS time:10050 player:1 count:60 period:20000 team:2
         """
         l = line.split()
-        print self.chunk
-        if self.chunk != 15:
+        if self.chunk != 9:
             if len(l) == 5:
                 self.add[int(l[1].split(':')[1])] += int(l[2].split(':')[1])
                 if int(l[1].split(':')[1]) == 0:

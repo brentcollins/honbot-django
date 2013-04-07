@@ -6,20 +6,6 @@
 <div class="container">
     <div class="row">
         <div class="span12 well">
-            <h1 class="stats-title">Average Actions Per Minute</h1>
-            <hr class="soften">
-            <div class="row">
-                <div class="span12 stats-title">
-                    <div id="lapm" style=" height: 400px; margin: 0 auto"></div>
-                    <div id="hapm" style=" height: 400px; margin: 0 auto"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="span12 well">
             <h1 class="stats-title">Skill Build</h1>
             <hr class="soften">
             <div class="row">
@@ -420,12 +406,27 @@
         </div>
     </div>
 </div>
+<div class="container">
+    <div class="row">
+        <div class="span12 well stats-title">
+            <h1>Average APM</h1>
+            <h4>Each tick = 3 Min</h4>
+            <hr class="soften">
+            <div class="row">
+                <div class="span12 stats-title">
+                    <div id="lapm" style=" height: 400px; margin: 0 auto"></div>
+                    <div id="hapm" style=" height: 400px; margin: 0 auto"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <script src="/static/js/highcharts.js"></script>
 <script>
 $(function () {
     $('#lapm').highcharts({
         chart: {
-            type: 'spline',
+            type: 'line',
             backgroundColor: null,
             plotBackgroundColor: null,
             plotBorderWidth: null,
@@ -437,6 +438,9 @@ $(function () {
         tooltip: {
             crosshairs: true,
             shared: true
+        },
+        credits: {
+            enabled: false
         },
         colors: ['#003fe2', '#00c19e', '#5d0072', '#FAF614', '#ff7d29'],
         series: [{
@@ -462,7 +466,7 @@ $(function () {
 $(function () {
     $('#hapm').highcharts({
         chart: {
-            type: 'spline',
+            type: 'line',
             backgroundColor: null,
             plotBackgroundColor: null,
             plotBorderWidth: null,
@@ -474,6 +478,9 @@ $(function () {
         tooltip: {
             crosshairs: true,
             shared: true
+        },
+        credits: {
+            enabled: false
         },
         colors: ['#ff44ab', '#959698', '#4cc3ee', '#006448', '#562507'],
         series: [{
