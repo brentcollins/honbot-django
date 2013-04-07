@@ -114,7 +114,7 @@ class Magic:
         """
         l = line.split()
         psr = int(float(l[-1].split(':')[1]))
-        if psr != -1:
+        if psr != -1 and len(self.players) != 10:
             name = l[2].split(':')[1][1:-1]
             for letter in name:
                 if letter == '[':
@@ -137,6 +137,8 @@ class Magic:
         """
         PLAYER_TEAM_CHANGE player:0 team:1
         """
+        print self.team
+        print line
         self.team.append(int(line[-3]))
 
     def PLAYER_SELECT(self, line):
@@ -173,7 +175,7 @@ class Magic:
         a['time'] = int(l[1].split(':')[1])
         ability = l[7].split('"')[1]
         if ability != 'Ability_AttributeBoost':
-            ability = int(re.sub("\D", "", ability))
+            ability = int(re.sub("\D", "", ability)[-1:])
         else:
             ability = 5
         a['ability'] = ability
