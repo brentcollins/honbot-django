@@ -1,4 +1,4 @@
-honbot-django
+Honbot-django an amazing project
 =============
 Hon Stats website written in django for the new api
 
