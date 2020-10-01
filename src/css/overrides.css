@@ -4,6 +4,8 @@
 html,
 body {
     height: 100%;
+    font-weight:normal;
+    border-color:black;
 }
 
 #wrap {
