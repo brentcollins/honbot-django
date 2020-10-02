@@ -1,6 +1,6 @@
 honbot-django
 =============
-Hon Stats website written in django for the new api
+Hon Stats website written in django for the new api is here 
 
 #License
 Copyright (c) 2013 Scott Cooper
